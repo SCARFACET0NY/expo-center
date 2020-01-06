@@ -32,7 +32,6 @@ public class DBCPDataSource {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            System.out.println("You are connected to database");
         } catch (SQLException e) {
             LOG.error("Connection failed.", e);
             throw new DataBaseConnectionException("Could not connect to database: " + e.getMessage());
