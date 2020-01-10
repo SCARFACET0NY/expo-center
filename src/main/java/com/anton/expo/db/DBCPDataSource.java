@@ -15,7 +15,7 @@ public class DBCPDataSource {
     private static final BasicDataSource dataSource = new BasicDataSource();
 
     static {
-        dataSource.setUrl("jdbc:mysql://localhost/expo?serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost/expo_center?serverTimezone=UTC");
         dataSource.setUsername("anton");
         dataSource.setPassword("anton");
         dataSource.setInitialSize(5);
