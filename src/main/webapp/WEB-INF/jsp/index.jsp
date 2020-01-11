@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <fmt:setLocale value="${sessionScope.lang}" scope="application"/>
 <fmt:setBundle basename="application" var="message"/>
@@ -9,5 +10,8 @@
     <a href="?locale=ru">ru</a>
     <a href="?locale=ua">ua</a>
     <h1><fmt:message bundle="${message}" key="expo.title"/></h1>
+    <c:forEach items="${halls}" var="hall">
+        <p>Hall Name: ${hall.title}, Hall Capacity: ${hall.area}</p>
+    </c:forEach>
 </body>
 </html>
