@@ -2,7 +2,6 @@ package com.anton.expo.services;
 
 import com.anton.expo.dao.HallDao;
 import com.anton.expo.entity.Hall;
-import com.anton.expo.factory.DaoFactory;
 
 import java.util.List;
 
