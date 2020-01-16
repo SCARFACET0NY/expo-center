@@ -29,7 +29,7 @@ public class DBCPDataSource {
      * @return {@code Connection}
      */
     public static Connection getConnection() {
-        Connection connection = null;
+        Connection connection;
         try {
             connection = dataSource.getConnection();
         } catch (SQLException e) {

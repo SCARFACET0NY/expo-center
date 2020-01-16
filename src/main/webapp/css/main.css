@@ -1,0 +1,25 @@
+body {
+    font-family: "Courier 10 Pitch", Serif;
+    background-color: white;
+}
+
+header {
+    min-height: 100px;
+}
+
+header .logo {
+    margin: 0 auto;
+}
+
+header .logo span {
+    position: relative;
+    top: 12px;
+    left: 12px;
+    font-size: 33px;
+    font-weight: bold;
+}
+
+.dropdown .dropdown-toggle {
+    font-size: 20px;
+    text-transform: capitalize;
+}
