@@ -19,6 +19,34 @@ header .logo span {
     font-weight: bold;
 }
 
+.sub-header {
+    margin-top: -4px;
+    height: 100px;
+}
+
+.sub-header .nav-item {
+    font-size: 32px;
+    padding: 0 40px;
+    color: #343a40;
+}
+
+.sub-header .nav-link {
+    color: #343a40;
+}
+
+.sub-header .nav-link:hover {
+    color: white;
+}
+
+.sub-header .nav-link .icon {
+    position: relative;
+    bottom: 4px;
+}
+
+.sub-header .nav-link:hover {
+    color: white;
+}
+
 .dropdown .dropdown-toggle {
     font-size: 20px;
     text-transform: capitalize;

@@ -6,14 +6,15 @@
 <fmt:setBundle basename="application" var="message"/>
 <html>
 <head>
-    <title><fmt:message bundle="${message}" key="expo.title"/></title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css" charset="UTF-8">
+    <title><fmt:message bundle="${message}" key="expo.title"/></title>
 </head>
 <body>
     <jsp:include page="header.jsp"/>
+    <jsp:include page="sub-header.jsp"/>
 
     <h1><fmt:message bundle="${message}" key="expo.title"/></h1>
     <c:forEach items="${halls}" var="hall">
