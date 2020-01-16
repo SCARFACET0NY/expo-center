@@ -1,4 +1,4 @@
-package com.anton.expo.dao;
+package com.anton.expo.repository.dao;
 
 import java.util.List;
 

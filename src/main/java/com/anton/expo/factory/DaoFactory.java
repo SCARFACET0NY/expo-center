@@ -1,8 +1,8 @@
 package com.anton.expo.factory;
 
-import com.anton.expo.dao.HallDao;
-import com.anton.expo.dao.HallDaoImpl;
-import com.anton.expo.db.DBCPDataSource;
+import com.anton.expo.repository.dao.HallDao;
+import com.anton.expo.repository.dao.HallDaoImpl;
+import com.anton.expo.repository.db.DBCPDataSource;
 
 public class DaoFactory {
     private static HallDao hallDao;

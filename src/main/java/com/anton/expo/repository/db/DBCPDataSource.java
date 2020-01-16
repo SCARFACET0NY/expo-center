@@ -1,4 +1,4 @@
-package com.anton.expo.db;
+package com.anton.expo.repository.db;
 
 import com.anton.expo.exceptions.DataBaseConnectionException;
 import org.apache.commons.dbcp2.BasicDataSource;

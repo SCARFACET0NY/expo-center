@@ -1,4 +1,4 @@
-package com.anton.expo.entity;
+package com.anton.expo.repository.entity;
 
 public class Hall {
     private long id;
