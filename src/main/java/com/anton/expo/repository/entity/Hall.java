@@ -1,10 +1,13 @@
 package com.anton.expo.repository.entity;
 
+import com.anton.expo.enums.HallType;
+
 public class Hall {
     private long id;
     private String title;
     private double area;
     private String imagePath;
+    private HallType type;
 
     public Hall() {}
 
@@ -38,5 +41,13 @@ public class Hall {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public HallType getType() {
+        return type;
+    }
+
+    public void setType(HallType type) {
+        this.type = type;
     }
 }
