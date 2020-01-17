@@ -3,6 +3,10 @@ body {
     background-color: white;
 }
 
+.container-fluid {
+    padding: 2em 6em;
+}
+
 header {
     min-height: 100px;
 }
@@ -50,4 +54,34 @@ header .logo span {
 .dropdown .dropdown-toggle {
     font-size: 20px;
     text-transform: capitalize;
+}
+
+.halls h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.halls .card {
+    margin-bottom: 4em;
+    border-radius: 0.5em;
+}
+
+.halls .card .card-img-top {
+    border-radius: 0.5em;
+}
+
+.halls .card .card-body {
+    padding-bottom: 0.5em;
+}
+
+.halls .card .card-title {
+    font-weight: bold;
+    font-size: 26px;
+}
+.halls .card .card-body .btn {
+    font-weight: bold;
+    font-size: 20px;
 }
