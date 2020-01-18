@@ -11,7 +11,7 @@ header {
     min-height: 100px;
 }
 
-header .logo {
+header .logo, .copyright {
     margin: 0 auto;
 }
 
@@ -84,4 +84,28 @@ header .logo span {
 .halls .card .card-body .btn {
     font-weight: bold;
     font-size: 20px;
+    margin-bottom: 0.5em;
+}
+
+footer {
+    min-height: 80px;
+}
+
+footer .logo span {
+    position: relative;
+    top: 3px;
+    left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.github {
+    margin-right: 10px;
+}
+
+.github span {
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+    left: 5px;
 }
