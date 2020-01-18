@@ -56,7 +56,7 @@ header .logo span {
     text-transform: capitalize;
 }
 
-.halls h2 {
+.halls h2, .expositions h2 {
     margin-bottom: 20px;
     font-weight: bold;
     font-size: 40px;
@@ -64,24 +64,24 @@ header .logo span {
     text-transform: capitalize;
 }
 
-.halls .card {
+.card {
     margin-bottom: 4em;
     border-radius: 0.5em;
 }
 
-.halls .card .card-img-top {
+.card .card-img-top {
     border-radius: 0.5em;
 }
 
-.halls .card .card-body {
+.card .card-body {
     padding-bottom: 0.5em;
 }
 
-.halls .card .card-title {
+.card .card-title {
     font-weight: bold;
     font-size: 26px;
 }
-.halls .card .card-body .btn {
+.card .card-body .btn {
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 0.5em;
