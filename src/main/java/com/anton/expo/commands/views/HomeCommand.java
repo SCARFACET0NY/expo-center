@@ -13,6 +13,7 @@ public class HomeCommand implements Command {
         if (req.getAttribute("halls") == null) {
             req.setAttribute("halls", ServiceFactory.getHallService().getAllHalls());
         }
+
         return new String[] {"index", "forward"};
     }
 }
