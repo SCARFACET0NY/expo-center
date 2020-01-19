@@ -24,8 +24,8 @@
             </a>
         </div>
 
-        <button type="button" class="btn btn-light btn-lg login">
+        <a type="button" class="btn btn-light btn-lg login" href="/login">
             <fmt:message bundle="${message}" key="expo.login"/>
-        </button>
+        </a>
     </nav>
 </header>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmr" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setLocale value="${sessionScope.lang}" scope="application"/>
 <fmt:setBundle basename="application" var="message"/>
@@ -16,9 +17,9 @@
                         <div class="card-body">
                             <h4 class="card-title">${exposition.title}</h4>
                             <p>${exposition.description}</p>
-                            <p>Takes place: ${exposition.startDate} - ${exposition.endDate}</p>
-                            <a class="btn btn-lg btn-info btn-block" href="">
-                                Buy Ticket
+                            <p><fmr:message bundle="${message}" key="expo.exposition.time"/>: ${exposition.startDate} - ${exposition.endDate}</p>
+                            <a class="btn btn-lg btn-info btn-block" href="/login">
+                                <fmr:message bundle="${message}" key="expo.exposition.ticket"/>
                             </a>
                         </div>
                     </div>
