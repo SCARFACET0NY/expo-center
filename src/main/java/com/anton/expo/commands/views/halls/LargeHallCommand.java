@@ -1,4 +1,4 @@
-package com.anton.expo.commands.views;
+package com.anton.expo.commands.views.halls;
 
 import com.anton.expo.commands.Command;
 import com.anton.expo.enums.HallType;

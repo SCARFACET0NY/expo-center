@@ -1,4 +1,4 @@
-package com.anton.expo.commands.views;
+package com.anton.expo.commands.views.login;
 
 import com.anton.expo.commands.Command;
 

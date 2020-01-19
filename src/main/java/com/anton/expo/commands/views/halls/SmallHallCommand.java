@@ -1,4 +1,4 @@
-package com.anton.expo.commands.views;
+package com.anton.expo.commands.views.halls;
 
 import com.anton.expo.commands.Command;
 import com.anton.expo.enums.HallType;
@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class MediumHallCommand implements Command {
+public class SmallHallCommand implements Command {
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Hall hall = ServiceFactory.getHallService().getHallByType(HallType.MEDIUM);
+        Hall hall = ServiceFactory.getHallService().getHallByType(HallType.SMALL);
         req.setAttribute("hall", hall);
         req.setAttribute("expositions", ServiceFactory.getExpositionService().getActiveExpositionsForHall(hall.getId()));
 
