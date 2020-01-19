@@ -1,10 +1,7 @@
 package com.anton.expo.factory;
 
 import com.anton.expo.commands.Command;
-import com.anton.expo.commands.views.HomeCommand;
-import com.anton.expo.commands.views.LargeHallCommand;
-import com.anton.expo.commands.views.MediumHallCommand;
-import com.anton.expo.commands.views.SmallHallCommand;
+import com.anton.expo.commands.views.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +16,7 @@ public class CommandFactory {
         commandMap = new HashMap<>();
         commandMap.put("", new HomeCommand());
         commandMap.put("largeHall", new LargeHallCommand());
+        commandMap.put("login", new LoginCommand());
         commandMap.put("mediumHall", new MediumHallCommand());
         commandMap.put("smallHall", new SmallHallCommand());
     }

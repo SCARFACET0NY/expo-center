@@ -56,7 +56,7 @@ header .logo span {
     text-transform: capitalize;
 }
 
-.halls h2, .expositions h2 {
+.halls h2, .expositions h2, .login h2 {
     margin-bottom: 20px;
     font-weight: bold;
     font-size: 40px;
@@ -81,10 +81,23 @@ header .logo span {
     font-weight: bold;
     font-size: 26px;
 }
-.card .card-body .btn {
+.card .card-body .btn, .login .btn {
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 0.5em;
+}
+
+.login {
+    margin-top: 2em;
+}
+
+.login .btn {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.login .btn-info {
+    margin-top: 2em;
 }
 
 footer {
