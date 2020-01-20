@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 user = new User();
+                user.setId(rs.getLong("id"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setPhone(rs.getString("phone"));

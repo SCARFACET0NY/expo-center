@@ -17,7 +17,10 @@ public class RegisterCommand implements Command {
                     req.getParameter("lastName"), req.getParameter("phone"), req.getParameter("email"),
                     LocalDateTime.now(), Long.parseLong(req.getParameter("cardNumber")), req.getParameter("userName"),
                     req.getParameter("password"), AccountStatus.CUSTOMER);
-            if (id > 0) return new String[] {"", "redirect"};
+            if (id > 0) {
+                req.getSession().setAttribute("user", ServiceFactory.getUserService().getUserById(id));
+                return new String[] {"", "redirect"};
+            }
         }
         return new String[] {"register", "forward"};
     }
