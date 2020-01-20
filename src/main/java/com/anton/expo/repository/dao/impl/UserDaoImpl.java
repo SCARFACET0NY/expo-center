@@ -13,10 +13,10 @@ public class UserDaoImpl implements UserDao {
     private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
-    private final String GET_USER = "SELECT first_name, last_name, phone, email, date_joined, card_number, username, " +
-            "password, account_status FROM `user`";
-    private final String CHECK_USER = "SELECT id FROM `user` WHERE username = ? and password = ?";
-
+    private final String GET_USER = "SELECT user_id, first_name, last_name, phone, email, date_joined, card_number, username, " +
+            "password, account_status FROM `user` WHERE user_id = ?";
+    private final String GET_PASSWORD = "SELECT password FROM `user` WHERE username = ?";
+    private final String CHECK_USER = "SELECT user_id FROM `user` WHERE username = ?";
     private final String INSERT_USER = "INSERT INTO `user` (first_name, last_name, phone, email, date_joined, card_number, " +
             "username, password, account_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String LAST_ID = "SELECT LAST_INSERT_ID()";
@@ -29,10 +29,12 @@ public class UserDaoImpl implements UserDao {
     public User get(long id) {
         User user = null;
         try (PreparedStatement statement = this.connection.prepareStatement(GET_USER)) {
+            statement.setLong(1, id);
+
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 user = new User();
-                user.setId(rs.getLong("id"));
+                user.setId(rs.getLong("user_id"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setPhone(rs.getString("phone"));
@@ -95,20 +97,36 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public long checkUsernameAndPassword(String username, String password) {
+    public long checkUsername(String username) {
         long id = -1;
         try (PreparedStatement statement = this.connection.prepareStatement(CHECK_USER)) {
             statement.setString(1, username);
-            statement.setString(2, password);
 
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                id = rs.getLong("id");
+                id = rs.getLong("user_id");
             }
         } catch (SQLException e) {
-            LOG.error("Unsuccessful user verification.", e);
-            throw new UserException("Could not find such user: " + e.getMessage(), e);
+            LOG.error("Username verification failed.", e);
+            throw new UserException("Could not find such username: " + e.getMessage(), e);
         }
         return id;
+    }
+
+    @Override
+    public String getPasswordForUsername(String username) {
+        String password = null;
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_PASSWORD)) {
+            statement.setString(1, username);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                password = rs.getString("password");
+            }
+        } catch (SQLException e) {
+            LOG.error("Unsuccessful password verification.", e);
+            throw new UserException("Could not find password for such username: " + e.getMessage(), e);
+        }
+        return password;
     }
 }

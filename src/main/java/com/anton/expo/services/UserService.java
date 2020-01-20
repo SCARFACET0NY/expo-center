@@ -32,4 +32,12 @@ public class UserService {
     public User getUserById(long id) {
         return userDao.get(id);
     }
+
+    public User getUserByUsername(String username) {
+        return getUserById(userDao.checkUsername(username));
+    }
+
+    public boolean verifyUser(String username, String password) {
+        return userDao.checkUsername(username) > 0 && bCrypt.verifyHash(password, userDao.getPasswordForUsername(username));
+    }
 }
