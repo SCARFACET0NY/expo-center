@@ -1,5 +1,6 @@
 package com.anton.expo.repository.dao.impl;
 
+import com.anton.expo.enums.AccountStatus;
 import com.anton.expo.exceptions.UserException;
 import com.anton.expo.repository.dao.UserDao;
 import com.anton.expo.repository.entity.User;
@@ -12,7 +13,9 @@ public class UserDaoImpl implements UserDao {
     private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
-    private final String INSERT_USER = "INSERT INTO user (first_name, last_name, phone, email, date_joined, card_number, " +
+    private final String GET_USER = "SELECT first_name, last_name, phone, email, date_joined, card_number, username, " +
+            "password, account_status FROM `user`";
+    private final String INSERT_USER = "INSERT INTO `user` (first_name, last_name, phone, email, date_joined, card_number, " +
             "username, password, account_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String LAST_ID = "SELECT LAST_INSERT_ID()";
 
@@ -22,7 +25,26 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User get(long id) {
-        return null;
+        User user = null;
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_USER)) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                user = new User();
+                user.setFirstName(rs.getString("first_name"));
+                user.setLastName(rs.getString("last_name"));
+                user.setPhone(rs.getString("phone"));
+                user.setEmail(rs.getString("email"));
+                user.setDateJoined(rs.getTimestamp("date_joined").toLocalDateTime());
+                user.setCardNumber(rs.getLong("card_number"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setAccountStatus(AccountStatus.valueOf(rs.getString("account_status")));
+            }
+        } catch (SQLException e) {
+            LOG.error("User extraction failed.", e);
+            throw new UserException("Can't get user: " + e.getMessage(), e);
+        }
+        return user;
     }
 
     @Override
