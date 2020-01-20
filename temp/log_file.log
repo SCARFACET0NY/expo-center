@@ -8,7 +8,7 @@ java.sql.SQLException: Column 'image' not found.
 	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:967)
 	at org.apache.commons.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:898)
 	at org.apache.commons.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:898)
-	at com.anton.expo.repository.dao.HallDaoImpl.getAll(HallDaoImpl.java:45)
+	at com.anton.expo.repository.dao.impl.HallDaoImpl.getAll(HallDaoImpl.java:45)
 	at com.anton.expo.services.HallService.getAllHalls(HallService.java:14)
 	at com.anton.expo.commands.views.HomeCommand.process(HomeCommand.java:14)
 	at com.anton.expo.controllers.FrontControllerServlet.processRequest(FrontControllerServlet.java:59)

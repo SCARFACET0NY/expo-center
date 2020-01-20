@@ -1,6 +1,7 @@
-package com.anton.expo.repository.dao;
+package com.anton.expo.repository.dao.impl;
 
 import com.anton.expo.exceptions.ExpositionException;
+import com.anton.expo.repository.dao.ExpositionDao;
 import com.anton.expo.repository.entity.Exposition;
 import org.apache.log4j.Logger;
 

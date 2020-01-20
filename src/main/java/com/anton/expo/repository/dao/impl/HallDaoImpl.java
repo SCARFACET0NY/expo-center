@@ -1,6 +1,7 @@
-package com.anton.expo.repository.dao;
+package com.anton.expo.repository.dao.impl;
 
 import com.anton.expo.enums.HallType;
+import com.anton.expo.repository.dao.HallDao;
 import com.anton.expo.repository.entity.Hall;
 import com.anton.expo.exceptions.HallException;
 import org.apache.log4j.Logger;
