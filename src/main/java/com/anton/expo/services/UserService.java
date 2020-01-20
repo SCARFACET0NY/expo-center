@@ -24,7 +24,7 @@ public class UserService {
         user.setCardNumber(cardNumber);
         user.setUsername(userName);
         user.setPassword(bCrypt.hash(password));
-        user.setAccountStatus(AccountStatus.CUSTOMER);
+        user.setAccountStatus(status);
 
         return userDao.save(user);
     }
