@@ -15,6 +15,8 @@ public class UserDaoImpl implements UserDao {
 
     private final String GET_USER = "SELECT first_name, last_name, phone, email, date_joined, card_number, username, " +
             "password, account_status FROM `user`";
+    private final String CHECK_USER = "SELECT id FROM `user` WHERE username = ? and password = ?";
+
     private final String INSERT_USER = "INSERT INTO `user` (first_name, last_name, phone, email, date_joined, card_number, " +
             "username, password, account_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String LAST_ID = "SELECT LAST_INSERT_ID()";
@@ -90,5 +92,23 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void delete(User user) {
 
+    }
+
+    @Override
+    public long checkUsernameAndPassword(String username, String password) {
+        long id = -1;
+        try (PreparedStatement statement = this.connection.prepareStatement(CHECK_USER)) {
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id = rs.getLong("id");
+            }
+        } catch (SQLException e) {
+            LOG.error("Unsuccessful user verification.", e);
+            throw new UserException("Could not find such user: " + e.getMessage(), e);
+        }
+        return id;
     }
 }
