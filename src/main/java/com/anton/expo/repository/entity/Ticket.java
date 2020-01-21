@@ -6,5 +6,4 @@ public class Ticket {
     private long id;
     private LocalDate date;
     private int quantity;
-    private long expositionId;
 }
