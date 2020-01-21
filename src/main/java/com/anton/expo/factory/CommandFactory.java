@@ -23,6 +23,7 @@ public class CommandFactory {
         commandMap = new HashMap<>();
         commandMap.put("", new HomeCommand());
         commandMap.put("addTicket", new AddTicketCommand());
+        commandMap.put("cart", new CartCommand());
         commandMap.put("largeHall", new LargeHallCommand());
         commandMap.put("login", new LoginCommand());
         commandMap.put("logout", new LogoutCommand());
