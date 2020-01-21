@@ -12,4 +12,8 @@ public class ExpositionService {
     public List<Exposition> getActiveExpositionsForHall(long id) {
         return expositionDao.getActiveExpositionsForHall(id);
     }
+
+    public Exposition getExpositionById(long id) {
+        return expositionDao.get(id);
+    }
 }

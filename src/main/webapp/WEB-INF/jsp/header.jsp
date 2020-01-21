@@ -29,12 +29,12 @@
                 <div class="btn-group btn-group-lg">
                     <div class="btn-group">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                            <span>0 products</span>
+                            <span>${cart.size()} products</span>
                         </button>
                         <div class="dropdown-menu">
-                            <span class="dropdown-item">exposition 1 ticket</span>
-                            <div class="dropdown-divider"></div>
-                            <span class="dropdown-item">exposition 3 ticket</span>
+                            <c:forEach items="${cart.values()}" var="ticket">
+                                <span class="dropdown-item">${ticket.exposition.title}</span>
+                            </c:forEach>
                         </div>
                     </div>
 

@@ -2,6 +2,7 @@ package com.anton.expo.factory;
 
 import com.anton.expo.commands.Command;
 import com.anton.expo.commands.login.LogoutCommand;
+import com.anton.expo.commands.ticket.AddTicketCommand;
 import com.anton.expo.commands.views.*;
 import com.anton.expo.commands.views.halls.LargeHallCommand;
 import com.anton.expo.commands.views.halls.MediumHallCommand;
@@ -21,6 +22,7 @@ public class CommandFactory {
     static {
         commandMap = new HashMap<>();
         commandMap.put("", new HomeCommand());
+        commandMap.put("addTicket", new AddTicketCommand());
         commandMap.put("largeHall", new LargeHallCommand());
         commandMap.put("login", new LoginCommand());
         commandMap.put("logout", new LogoutCommand());

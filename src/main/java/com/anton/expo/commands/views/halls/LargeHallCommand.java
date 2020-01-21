@@ -15,6 +15,7 @@ public class LargeHallCommand implements Command {
         Hall hall = ServiceFactory.getHallService().getHallByType(HallType.LARGE);
         req.setAttribute("hall", hall);
         req.setAttribute("expositions", ServiceFactory.getExpositionService().getActiveExpositionsForHall(hall.getId()));
+        req.getSession().setAttribute("origin", req.getRequestURI().substring(1));
 
         return new String[] {"hall", "forward"};
     }

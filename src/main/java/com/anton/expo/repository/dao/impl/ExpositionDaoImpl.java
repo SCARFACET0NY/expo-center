@@ -14,6 +14,8 @@ public class ExpositionDaoImpl implements ExpositionDao {
     private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
+    private final String GET_EXPOSITION_BY_ID = "SELECT exposition_id, title, description, price, image_path," +
+            "start_date, end_date FROM exposition WHERE exposition_id = ?";
     private final String GET_EXPOSITIONS_FOR_HALL = "SELECT exposition_id, title, description, price, image_path," +
             "start_date, end_date FROM exposition WHERE hall_id = ? AND end_date > ?";
 
@@ -23,7 +25,27 @@ public class ExpositionDaoImpl implements ExpositionDao {
 
     @Override
     public Exposition get(long id) {
-        return null;
+        Exposition exposition = null;
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_EXPOSITION_BY_ID)) {
+            statement.setLong(1, id);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                exposition = new Exposition();
+
+                exposition.setId(rs.getLong("exposition_id"));
+                exposition.setTitle(rs.getString("title"));
+                exposition.setDescription(rs.getString("description"));
+                exposition.setPrice(rs.getDouble("price"));
+                exposition.setImagePath(rs.getString("image_path"));
+                exposition.setStartDate(rs.getDate("start_date").toLocalDate());
+                exposition.setEndDate(rs.getDate("end_date").toLocalDate());
+            }
+        } catch (SQLException e) {
+            LOG.error("Extraction of exposition by id failed.", e);
+            throw new ExpositionException("Can't get exposition by id: " + e.getMessage(), e);
+        }
+        return exposition;
     }
 
     @Override
