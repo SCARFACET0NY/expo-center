@@ -17,6 +17,7 @@
                         <div class="card-body">
                             <h4 class="card-title">${exposition.title}</h4>
                             <p>${exposition.description}</p>
+                            <p>Price: ${exposition.price}uah</p>
                             <p><fmr:message bundle="${message}" key="expo.exposition.time"/>: ${exposition.startDate} - ${exposition.endDate}</p>
                             <c:choose>
                                 <c:when test="${not empty user}">

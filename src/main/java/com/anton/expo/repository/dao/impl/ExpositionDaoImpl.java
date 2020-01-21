@@ -14,8 +14,8 @@ public class ExpositionDaoImpl implements ExpositionDao {
     private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
-    private final String GET_EXPOSITIONS_FOR_HALL = "SELECT exposition_id, title, description, image_path, start_date, " +
-            "end_date FROM exposition WHERE hall_id = ? AND end_date > ?";
+    private final String GET_EXPOSITIONS_FOR_HALL = "SELECT exposition_id, title, description, price, image_path," +
+            "start_date, end_date FROM exposition WHERE hall_id = ? AND end_date > ?";
 
     public ExpositionDaoImpl(Connection connection) {
         this.connection = connection;
@@ -59,6 +59,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
                 exposition.setId(rs.getLong("exposition_id"));
                 exposition.setTitle(rs.getString("title"));
                 exposition.setDescription(rs.getString("description"));
+                exposition.setPrice(rs.getDouble("price"));
                 exposition.setImagePath(rs.getString("image_path"));
                 exposition.setStartDate(rs.getDate("start_date").toLocalDate());
                 exposition.setEndDate(rs.getDate("end_date").toLocalDate());

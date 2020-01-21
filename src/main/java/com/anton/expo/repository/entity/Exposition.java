@@ -6,6 +6,7 @@ public class Exposition {
     private long id;
     private String title;
     private String description;
+    private double price;
     private String imagePath;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -34,6 +35,14 @@ public class Exposition {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getImagePath() {
