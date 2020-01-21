@@ -20,9 +20,12 @@
                             <p><fmr:message bundle="${message}" key="expo.exposition.time"/>: ${exposition.startDate} - ${exposition.endDate}</p>
                             <c:choose>
                                 <c:when test="${not empty user}">
-                                    <a class="btn btn-lg btn-info btn-block" href="/cart">
-                                        <fmr:message bundle="${message}" key="expo.exposition.ticket"/>
-                                    </a>
+                                    <form action="addTicket" method="post">
+                                        <input type="hidden" name="exposition_id" value="${exposition.id}">
+                                        <button class="btn btn-lg btn-info btn-block" type="submit">
+                                            <fmr:message bundle="${message}" key="expo.exposition.ticket"/>
+                                        </button>
+                                    </form>
                                 </c:when>
                                 <c:otherwise>
                                     <a class="btn btn-lg btn-info btn-block" href="/login">
