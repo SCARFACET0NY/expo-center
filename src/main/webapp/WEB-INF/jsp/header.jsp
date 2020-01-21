@@ -24,8 +24,17 @@
             </a>
         </div>
 
-        <a type="button" class="btn btn-light btn-lg" href="/login">
-            <fmt:message bundle="${message}" key="expo.login"/>
-        </a>
+        <c:choose>
+            <c:when test="${not empty user}">
+                <a type="button" class="btn btn-light btn-lg" href="/logout">
+                    <fmt:message bundle="${message}" key="expo.logout"/>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a type="button" class="btn btn-light btn-lg" href="/login">
+                    <fmt:message bundle="${message}" key="expo.login"/>
+                </a>
+            </c:otherwise>
+        </c:choose>
     </nav>
 </header>

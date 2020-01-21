@@ -18,9 +18,18 @@
                             <h4 class="card-title">${exposition.title}</h4>
                             <p>${exposition.description}</p>
                             <p><fmr:message bundle="${message}" key="expo.exposition.time"/>: ${exposition.startDate} - ${exposition.endDate}</p>
-                            <a class="btn btn-lg btn-info btn-block" href="/login">
-                                <fmr:message bundle="${message}" key="expo.exposition.ticket"/>
-                            </a>
+                            <c:choose>
+                                <c:when test="${not empty user}">
+                                    <a class="btn btn-lg btn-info btn-block" href="/cart">
+                                        <fmr:message bundle="${message}" key="expo.exposition.ticket"/>
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="btn btn-lg btn-info btn-block" href="/login">
+                                        <fmr:message bundle="${message}" key="expo.exposition.ticket"/>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>

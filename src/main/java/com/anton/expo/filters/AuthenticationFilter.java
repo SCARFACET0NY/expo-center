@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Rejects unauthorized access or redirects to next filter in chain
+ */
 @WebFilter(urlPatterns = "/*")
 public class AuthenticationFilter implements Filter {
     @Override

@@ -1,4 +1,4 @@
-package com.anton.expo.commands.views.login;
+package com.anton.expo.commands.login;
 
 import com.anton.expo.commands.Command;
 import com.anton.expo.enums.AccountStatus;
