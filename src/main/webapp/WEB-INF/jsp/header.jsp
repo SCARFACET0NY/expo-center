@@ -26,6 +26,22 @@
 
         <c:choose>
             <c:when test="${not empty user}">
+                <div class="btn-group btn-group-lg">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span>0 products</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <span class="dropdown-item">exposition 1 ticket</span>
+                            <div class="dropdown-divider"></div>
+                            <span class="dropdown-item">exposition 3 ticket</span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-info">
+                        <a href="cart" class="nav-link text-light">Checkout</a>
+                    </button>
+                </div>
                 <a type="button" class="btn btn-light btn-lg" href="/logout">
                     <fmt:message bundle="${message}" key="expo.logout"/>
                 </a>
