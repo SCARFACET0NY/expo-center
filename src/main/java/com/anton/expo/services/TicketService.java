@@ -9,12 +9,13 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class TicketService {
+    public static final int ONE_TICKET = 1;
     private ExpositionDao expositionDao = DaoFactory.getExpositionDao();
 
     public TicketDto createTicketDto(long expositionId) {
         TicketDto ticketDto = new TicketDto();
         Ticket ticket = new Ticket();
-        ticket.setQuantity(1);
+        ticket.setQuantity(ONE_TICKET);
         ticket.setDate(LocalDate.now());
 
         ticketDto.setTicket(ticket);
