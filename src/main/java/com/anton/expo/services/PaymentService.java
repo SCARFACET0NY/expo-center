@@ -9,12 +9,16 @@ import java.time.LocalDateTime;
 public class PaymentService {
     private PaymentDao paymentDao = DaoFactory.getPaymentDao();
 
-    public long createPayment(double total, LocalDateTime date, long userId) {
+    public Payment createPayment(double total, long userId) {
         Payment payment = new Payment();
         payment.setTotal(total);
-        payment.setDate(date);
+        payment.setDate(LocalDateTime.now());
         payment.setUsedId(userId);
 
-        return paymentDao.save(payment);
+        return payment;
+    }
+
+    public long savePayment(double total, long userId) {
+        return paymentDao.save(createPayment(total, userId));
     }
 }

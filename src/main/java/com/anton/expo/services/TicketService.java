@@ -2,6 +2,7 @@ package com.anton.expo.services;
 
 import com.anton.expo.factory.DaoFactory;
 import com.anton.expo.repository.dao.ExpositionDao;
+import com.anton.expo.repository.dao.TicketDao;
 import com.anton.expo.repository.dto.TicketDto;
 import com.anton.expo.repository.entity.Exposition;
 import com.anton.expo.repository.entity.Ticket;
@@ -12,6 +13,7 @@ import java.util.Map;
 public class TicketService {
     public static final int ONE_TICKET = 1;
     private ExpositionDao expositionDao = DaoFactory.getExpositionDao();
+    private TicketDao ticketDao = DaoFactory.getTicketDao();
 
     public TicketDto createTicketDto(long expositionId) {
         TicketDto ticketDto = new TicketDto();
@@ -28,6 +30,11 @@ public class TicketService {
         ticketDto.setExposition(exposition);
 
         return ticketDto;
+    }
+
+    public void saveTicket(Ticket ticket, long payment_id) {
+        ticket.setPaymentId(payment_id);
+        ticketDao.save(ticket);
     }
 
     public double getCartTotal(Map<String, TicketDto> cart) {
