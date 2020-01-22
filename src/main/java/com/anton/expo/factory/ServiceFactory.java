@@ -1,13 +1,11 @@
 package com.anton.expo.factory;
 
-import com.anton.expo.services.ExpositionService;
-import com.anton.expo.services.HallService;
-import com.anton.expo.services.TicketService;
-import com.anton.expo.services.UserService;
+import com.anton.expo.services.*;
 
 public class ServiceFactory {
     private static ExpositionService expositionService = new ExpositionService();
     private static HallService hallService = new HallService();
+    private static PaymentService paymentService = new PaymentService();
     private static TicketService ticketService = new TicketService();
     private static UserService userService = new UserService();
 
@@ -19,6 +17,10 @@ public class ServiceFactory {
 
     public static HallService getHallService() {
         return hallService;
+    }
+
+    public static PaymentService getPaymentService() {
+        return paymentService;
     }
 
     public static TicketService getTicketService() {
