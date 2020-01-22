@@ -6,6 +6,8 @@ public class Ticket {
     private long id;
     private LocalDate date;
     private int quantity;
+    private long expositionId;
+    private long paymentId;
 
     public Ticket() {}
 
@@ -31,5 +33,21 @@ public class Ticket {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public long getExpositionId() {
+        return expositionId;
+    }
+
+    public void setExpositionId(long expositionId) {
+        this.expositionId = expositionId;
+    }
+
+    public long getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(long paymentId) {
+        this.paymentId = paymentId;
     }
 }

@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
             "password, account_status FROM `user` WHERE user_id = ?";
     private final String GET_PASSWORD = "SELECT password FROM `user` WHERE username = ?";
     private final String CHECK_USER = "SELECT user_id FROM `user` WHERE username = ?";
-    private final String INSERT_USER = "INSERT INTO `user` (first_name, last_name, phone, email, date_joined, card_number, " +
+    private final String CREATE_USER = "INSERT INTO `user` (first_name, last_name, phone, email, date_joined, card_number, " +
             "username, password, account_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String LAST_ID = "SELECT LAST_INSERT_ID()";
 
@@ -61,7 +61,7 @@ public class UserDaoImpl implements UserDao {
     public long save(User user) {
         long id = -1;
         try (
-                PreparedStatement statement = this.connection.prepareStatement(INSERT_USER);
+                PreparedStatement statement = this.connection.prepareStatement(CREATE_USER);
                 Statement idStatement = this.connection.createStatement()
         ) {
             statement.setString(1, user.getFirstName());
