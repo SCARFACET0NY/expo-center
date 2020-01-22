@@ -35,7 +35,7 @@ public class TicketDaoImpl implements TicketDao {
         long id = -1;
         try (PreparedStatement statement = this.connection.prepareStatement(CREATE_TICKET);
              Statement idStatement = this.connection.createStatement()) {
-            statement.setDate(1, Date.valueOf(ticket.getDate()));
+            statement.setDate(1, Date.valueOf(ticket.getDate().plusDays(1)));
             statement.setInt(2, ticket.getQuantity());
             statement.setLong(3, ticket.getExpositionId());
             statement.setLong(4, ticket.getPaymentId());

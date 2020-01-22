@@ -26,6 +26,8 @@ public class TicketService {
         } else {
             ticket.setDate(exposition.getStartDate());
         }
+        ticket.setExpositionId(expositionId);
+
         ticketDto.setTicket(ticket);
         ticketDto.setExposition(exposition);
 
