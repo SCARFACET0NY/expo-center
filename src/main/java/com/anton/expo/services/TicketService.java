@@ -3,6 +3,7 @@ package com.anton.expo.services;
 import com.anton.expo.factory.DaoFactory;
 import com.anton.expo.repository.dao.ExpositionDao;
 import com.anton.expo.repository.dto.TicketDto;
+import com.anton.expo.repository.entity.Exposition;
 import com.anton.expo.repository.entity.Ticket;
 
 import java.time.LocalDate;
@@ -15,11 +16,16 @@ public class TicketService {
     public TicketDto createTicketDto(long expositionId) {
         TicketDto ticketDto = new TicketDto();
         Ticket ticket = new Ticket();
-        ticket.setQuantity(ONE_TICKET);
-        ticket.setDate(LocalDate.now());
+        Exposition exposition = expositionDao.get(expositionId);
 
+        ticket.setQuantity(ONE_TICKET);
+        if (LocalDate.now().isAfter(exposition.getStartDate())) {
+            ticket.setDate(LocalDate.now());
+        } else {
+            ticket.setDate(exposition.getStartDate());
+        }
         ticketDto.setTicket(ticket);
-        ticketDto.setExposition(expositionDao.get(expositionId));
+        ticketDto.setExposition(exposition);
 
         return ticketDto;
     }
