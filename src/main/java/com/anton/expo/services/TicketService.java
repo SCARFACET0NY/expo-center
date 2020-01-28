@@ -17,16 +17,15 @@ public class TicketService {
 
     public TicketDto createTicketDto(long expositionId) {
         TicketDto ticketDto = new TicketDto();
-        Ticket ticket = new Ticket();
         Exposition exposition = expositionDao.get(expositionId);
 
-        ticket.setQuantity(ONE_TICKET);
+        LocalDate date = null;
         if (LocalDate.now().isAfter(exposition.getStartDate())) {
-            ticket.setDate(LocalDate.now());
+            date = LocalDate.now();
         } else {
-            ticket.setDate(exposition.getStartDate());
+            date = exposition.getStartDate();
         }
-        ticket.setExpositionId(expositionId);
+        Ticket ticket = Ticket.builder().quantity(ONE_TICKET).date(date).expositionId(expositionId).build();
 
         ticketDto.setTicket(ticket);
         ticketDto.setExposition(exposition);

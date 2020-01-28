@@ -14,17 +14,10 @@ public class UserService {
 
     public long registerUser(String firstName, String lastName, String phone, String email, LocalDateTime dateJoined,
                              long cardNumber, String userName, String password, AccountStatus status) {
-        User user = new User();
 
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setPhone(phone);
-        user.setEmail(email);
-        user.setDateJoined(dateJoined);
-        user.setCardNumber(cardNumber);
-        user.setUsername(userName);
-        user.setPassword(bCrypt.hash(password));
-        user.setAccountStatus(status);
+        User user = User.builder().firstName(firstName).lastName(lastName).phone(phone).email(email)
+                .dateJoined(dateJoined).cardNumber(cardNumber).username(userName).password(bCrypt.hash(password))
+                .accountStatus(status).build();
 
         return userDao.save(user);
     }

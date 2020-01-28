@@ -10,12 +10,7 @@ public class PaymentService {
     private PaymentDao paymentDao = DaoFactory.getPaymentDao();
 
     public Payment createPayment(double total, long userId) {
-        Payment payment = new Payment();
-        payment.setTotal(total);
-        payment.setDate(LocalDateTime.now());
-        payment.setUsedId(userId);
-
-        return payment;
+        return Payment.builder().usedId(userId).date(LocalDateTime.now()).total(total).build();
     }
 
     public long savePayment(double total, long userId) {

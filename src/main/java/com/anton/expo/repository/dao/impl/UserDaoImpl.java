@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                user = new User();
+                user = User.builder().build();
                 user.setId(rs.getLong("user_id"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
