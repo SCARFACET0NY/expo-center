@@ -22,7 +22,7 @@
                             <c:choose>
                                 <c:when test="${not empty user}">
                                     <form action="addTicket" method="post">
-                                        <input type="hidden" name="exposition_id" value="${exposition.id}">
+                                        <input type ="hidden" name="exposition_id" value="${exposition.id}">
                                         <button class="btn btn-lg btn-info btn-block" type="submit">
                                             <fmr:message bundle="${message}" key="expo.exposition.ticket"/>
                                         </button>

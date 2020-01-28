@@ -22,6 +22,9 @@
     <servlet.api.version>4.0.1</servlet.api.version>
     <jbcrypt.version>0.4</jbcrypt.version>
     <hamcrest.version>1.3</hamcrest.version>
+    <activation.version>1.1.1</activation.version>
+    <mail.verion>1.6.2</mail.verion>
+    <lombok.version>1.18.10</lombok.version>
   </properties>
 
   <dependencies>
@@ -80,6 +83,22 @@
       <artifactId>hamcrest-all</artifactId>
       <version>${hamcrest.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>${mail.verion}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.activation</groupId>
+      <artifactId>activation</artifactId>
+      <version>${activation.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
