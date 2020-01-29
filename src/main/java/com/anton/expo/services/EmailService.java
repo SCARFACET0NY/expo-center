@@ -26,6 +26,7 @@ public class EmailService {
         for (TicketDto ticketDto : cart.values()) {
             message.append("<p>title: " + ticketDto.getExposition().getTitle() + ", ");
             message.append("date: " + ticketDto.getTicket().getDate() + ", ");
+            message.append("quantity: " + ticketDto.getTicket().getQuantity() + ", ");
             message.append("price: " + ticketDto.getExposition().getPrice() + "</p>");
         }
         message.append("<br/>");
