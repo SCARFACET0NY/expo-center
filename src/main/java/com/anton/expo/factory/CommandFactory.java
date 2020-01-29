@@ -32,6 +32,7 @@ public class CommandFactory {
         commandMap.put("pay", new PayTicketsCommand());
         commandMap.put("register", new RegisterCommand());
         commandMap.put("removeTicket", new RemoveTicketCommand());
+        commandMap.put("search", new SearchPageCommand());
         commandMap.put("sendMail", new SendMailCommand());
         commandMap.put("setDate", new SetTicketDateCommand());
         commandMap.put("setQuantity", new TicketQuantityCommand());
