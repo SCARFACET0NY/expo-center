@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ExpositionDao extends Dao<Exposition> {
     List<Exposition> getActiveExpositionsForHall(long id);
+
+    List<Exposition> searchByTitle(String query);
 }
