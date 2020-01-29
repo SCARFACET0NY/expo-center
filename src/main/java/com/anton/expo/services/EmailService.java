@@ -3,9 +3,21 @@ package com.anton.expo.services;
 import com.anton.expo.repository.dto.TicketDto;
 import com.anton.expo.repository.entity.User;
 
+import java.io.*;
 import java.util.Map;
+import java.util.Properties;
 
 public class EmailService {
+    public Properties loadProperties() {
+        Properties properties = new Properties();
+        try (InputStream inputStream = EmailService.class.getClassLoader().getResourceAsStream("mail.properties")) {
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
+    }
+
     public String createEmailText(Map<String, TicketDto> cart, double total, User user) {
         String cardNumber = String.valueOf(user.getCardNumber());
         String lastFourDigits = cardNumber.substring(cardNumber.length() - 4);
