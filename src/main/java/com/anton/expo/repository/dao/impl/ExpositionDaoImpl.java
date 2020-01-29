@@ -19,7 +19,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
     private final String GET_EXPOSITIONS_FOR_HALL = "SELECT exposition_id, title, description, price, image_path," +
             "start_date, end_date FROM exposition WHERE hall_id = ? AND end_date > ?";
     private final String SEARCH_EXPOSITIONS_BY_TITLE = "SELECT exposition_id, title, description, price, image_path," +
-            "start_date, end_date FROM exposition WHERE title LIKE %?% AND end_date > ?";
+            "start_date, end_date FROM exposition WHERE title LIKE ? AND end_date > ?";
 
     public ExpositionDaoImpl(Connection connection) {
         this.connection = connection;
@@ -101,7 +101,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
     public List<Exposition> searchByTitle(String query) {
         List<Exposition> expositions = new ArrayList<>();
         try (PreparedStatement statement = this.connection.prepareStatement(SEARCH_EXPOSITIONS_BY_TITLE)) {
-            statement.setString(1, query);
+            statement.setString(1, "%" + query.toLowerCase() + "%");
             statement.setDate(2, Date.valueOf(LocalDate.now()));
 
             ResultSet rs = statement.executeQuery();

@@ -16,4 +16,8 @@ public class ExpositionService {
     public Exposition getExpositionById(long id) {
         return expositionDao.get(id);
     }
+
+    public List<Exposition> searchExpositionsByTitle(String query) {
+        return expositionDao.searchByTitle(query);
+    }
 }
