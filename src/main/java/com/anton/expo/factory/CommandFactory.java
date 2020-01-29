@@ -2,6 +2,7 @@ package com.anton.expo.factory;
 
 import com.anton.expo.commands.Command;
 import com.anton.expo.commands.login.LogoutCommand;
+import com.anton.expo.commands.mail.SendMailCommand;
 import com.anton.expo.commands.ticket.*;
 import com.anton.expo.commands.views.*;
 import com.anton.expo.commands.views.halls.LargeHallCommand;
@@ -31,6 +32,7 @@ public class CommandFactory {
         commandMap.put("pay", new PayTicketsCommand());
         commandMap.put("register", new RegisterCommand());
         commandMap.put("removeTicket", new RemoveTicketCommand());
+        commandMap.put("sendMail", new SendMailCommand());
         commandMap.put("setDate", new SetTicketDateCommand());
         commandMap.put("setQuantity", new TicketQuantityCommand());
         commandMap.put("smallHall", new SmallHallCommand());

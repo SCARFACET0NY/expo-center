@@ -25,10 +25,8 @@ public class PayTicketsCommand implements Command {
             cart.values().forEach(ticketDto -> {
                 ServiceFactory.getTicketService().saveTicket(ticketDto.getTicket(), paymentId);
             });
-            cart.clear();
 
-            session.setAttribute("cart", null);
-            session.setAttribute("total", null);
+            return new String[] {"sendMail", "redirect"};
         }
 
         return new String[] {"", "redirect"};
