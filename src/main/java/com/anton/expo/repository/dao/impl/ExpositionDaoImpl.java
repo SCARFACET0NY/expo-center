@@ -23,6 +23,8 @@ public class ExpositionDaoImpl implements ExpositionDao {
             "start_date, end_date, hall_id FROM exposition WHERE hall_id = ? AND end_date > ?";
     private final String SEARCH_EXPOSITIONS_BY_TITLE = "SELECT exposition_id, title, description, price, image_path," +
             "start_date, end_date, hall_id FROM exposition WHERE title LIKE ? AND end_date > ?";
+    private final String UPDATE_EXPOSITION = "UPDATE exposition SET title = ?, description = ?, price = ?, " +
+            "image_path = ?, start_date = ?, end_date = ?, hall_id = ? WHERE exposition_id = ?";
     private final String LAST_ID = "SELECT LAST_INSERT_ID()";
 
     public ExpositionDaoImpl(Connection connection) {
@@ -69,8 +71,8 @@ public class ExpositionDaoImpl implements ExpositionDao {
             statement.setString(2, exposition.getDescription());
             statement.setDouble(3, exposition.getPrice());
             statement.setString(4, exposition.getImagePath());
-            statement.setDate(5, Date.valueOf(exposition.getStartDate()));
-            statement.setDate(6, Date.valueOf(exposition.getEndDate()));
+            statement.setDate(5, Date.valueOf(exposition.getStartDate().plusDays(1)));
+            statement.setDate(6, Date.valueOf(exposition.getEndDate().plusDays(1)));
             statement.setLong(7, exposition.getHallId());
             statement.execute();
 
@@ -87,7 +89,20 @@ public class ExpositionDaoImpl implements ExpositionDao {
 
     @Override
     public void update(Exposition exposition) {
-
+        try (PreparedStatement statement = this.connection.prepareStatement(UPDATE_EXPOSITION);) {
+            statement.setString(1, exposition.getTitle());
+            statement.setString(2, exposition.getDescription());
+            statement.setDouble(3, exposition.getPrice());
+            statement.setString(4, exposition.getImagePath());
+            statement.setDate(5, Date.valueOf(exposition.getStartDate().plusDays(1)));
+            statement.setDate(6, Date.valueOf(exposition.getEndDate().plusDays(1)));
+            statement.setLong(7, exposition.getHallId());
+            statement.setLong(8, exposition.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            LOG.error("Modification of exposition failed.", e);
+            throw new ExpositionException("Can't modify exposition: " + e.getMessage(), e);
+        }
     }
 
     @Override
