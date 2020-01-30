@@ -14,12 +14,16 @@ public class ExpositionDaoImpl implements ExpositionDao {
     private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
+    private final String CREATE_EXPOSITION = "INSERT INTO exposition (title, description, price, image_path, " +
+                "start_date, end_date, hall_id) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?)";
     private final String GET_EXPOSITION_BY_ID = "SELECT exposition_id, title, description, price, image_path," +
-            "start_date, end_date FROM exposition WHERE exposition_id = ?";
+            "start_date, end_date, hall_id FROM exposition WHERE exposition_id = ?";
     private final String GET_EXPOSITIONS_FOR_HALL = "SELECT exposition_id, title, description, price, image_path," +
-            "start_date, end_date FROM exposition WHERE hall_id = ? AND end_date > ?";
+            "start_date, end_date, hall_id FROM exposition WHERE hall_id = ? AND end_date > ?";
     private final String SEARCH_EXPOSITIONS_BY_TITLE = "SELECT exposition_id, title, description, price, image_path," +
-            "start_date, end_date FROM exposition WHERE title LIKE ? AND end_date > ?";
+            "start_date, end_date, hall_id FROM exposition WHERE title LIKE ? AND end_date > ?";
+    private final String LAST_ID = "SELECT LAST_INSERT_ID()";
 
     public ExpositionDaoImpl(Connection connection) {
         this.connection = connection;
@@ -42,6 +46,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
                 exposition.setImagePath(rs.getString("image_path"));
                 exposition.setStartDate(rs.getDate("start_date").toLocalDate());
                 exposition.setEndDate(rs.getDate("end_date").toLocalDate());
+                exposition.setHallId(rs.getLong("hall_id"));
             }
         } catch (SQLException e) {
             LOG.error("Extraction of exposition by id failed.", e);
@@ -57,7 +62,27 @@ public class ExpositionDaoImpl implements ExpositionDao {
 
     @Override
     public long save(Exposition exposition) {
-        return 0;
+        long id = -1;
+        try (PreparedStatement statement = this.connection.prepareStatement(CREATE_EXPOSITION);
+             Statement idStatement = this.connection.createStatement()) {
+            statement.setString(1, exposition.getTitle());
+            statement.setString(2, exposition.getDescription());
+            statement.setDouble(3, exposition.getPrice());
+            statement.setString(4, exposition.getImagePath());
+            statement.setDate(5, Date.valueOf(exposition.getStartDate()));
+            statement.setDate(6, Date.valueOf(exposition.getEndDate()));
+            statement.setLong(7, exposition.getHallId());
+            statement.execute();
+
+            ResultSet rs = idStatement.executeQuery(LAST_ID);
+            if (rs.next()) {
+                id = rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            LOG.error("Creation of exposition failed.", e);
+            throw new ExpositionException("Can't create exposition: " + e.getMessage(), e);
+        }
+        return id;
     }
 
     @Override
@@ -87,6 +112,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
                 exposition.setImagePath(rs.getString("image_path"));
                 exposition.setStartDate(rs.getDate("start_date").toLocalDate());
                 exposition.setEndDate(rs.getDate("end_date").toLocalDate());
+                exposition.setHallId(rs.getLong("hall_id"));
 
                 expositions.add(exposition);
             }
@@ -114,6 +140,7 @@ public class ExpositionDaoImpl implements ExpositionDao {
                 exposition.setImagePath(rs.getString("image_path"));
                 exposition.setStartDate(rs.getDate("start_date").toLocalDate());
                 exposition.setEndDate(rs.getDate("end_date").toLocalDate());
+                exposition.setHallId(rs.getLong("hall_id"));
 
                 expositions.add(exposition);
             }

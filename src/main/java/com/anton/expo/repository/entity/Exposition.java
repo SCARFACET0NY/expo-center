@@ -17,4 +17,5 @@ public class Exposition {
     private String imagePath;
     private LocalDate startDate;
     private LocalDate endDate;
+    private long hallId;
 }
