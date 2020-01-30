@@ -13,7 +13,7 @@
     <title><fmt:message bundle="${message}" key="expo.title"/></title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="admin-header.jsp"/>
     <jsp:include page="sub-header.jsp"/>
     <h1>Hello</h1>
     <jsp:include page="footer.jsp"/>
