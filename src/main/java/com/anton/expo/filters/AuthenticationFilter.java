@@ -1,5 +1,8 @@
 package com.anton.expo.filters;
 
+import com.anton.expo.enums.AccountStatus;
+import com.anton.expo.repository.entity.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -20,14 +23,21 @@ public class AuthenticationFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
+        User user = (User) req.getSession().getAttribute("user");
 
         if (req.getRequestURI().startsWith("/cart")) {
-            if (req.getSession().getAttribute("user") == null) {
+            if (user == null) {
                 res.sendRedirect("/");
             } else {
                 filterChain.doFilter(req, res);
             }
-        } else {
+        } else if (req.getRequestURI().startsWith("/admin")) {
+            if (user != null && user.getAccountStatus().equals(AccountStatus.ADMIN)) {
+                filterChain.doFilter(req, res);
+            } else {
+                res.sendRedirect("/");
+            }
+        } else  {
             filterChain.doFilter(req, res);
         }
 

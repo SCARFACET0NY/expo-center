@@ -23,6 +23,7 @@ public class CommandFactory {
     static {
         commandMap = new HashMap<>();
         commandMap.put("", new HomeCommand());
+        commandMap.put("admin", new AdminCommand());
         commandMap.put("addTicket", new AddTicketCommand());
         commandMap.put("cart", new CartCommand());
         commandMap.put("largeHall", new LargeHallCommand());
@@ -32,7 +33,7 @@ public class CommandFactory {
         commandMap.put("pay", new PayTicketsCommand());
         commandMap.put("register", new RegisterCommand());
         commandMap.put("removeTicket", new RemoveTicketCommand());
-        commandMap.put("search", new SearchPageCommand());
+        commandMap.put("search", new SearchCommand());
         commandMap.put("sendMail", new SendMailCommand());
         commandMap.put("setDate", new SetTicketDateCommand());
         commandMap.put("setQuantity", new TicketQuantityCommand());

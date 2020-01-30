@@ -9,13 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class SearchPageCommand implements Command {
+public class SearchCommand implements Command {
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String query = req.getParameter("query");
         if (query != null) {
             List<Exposition> expositions = ServiceFactory.getExpositionService().searchExpositionsByTitle(query);
-            System.out.println(expositions);
             if (!expositions.isEmpty()) {
                 req.setAttribute("expositions", expositions);
             } else {

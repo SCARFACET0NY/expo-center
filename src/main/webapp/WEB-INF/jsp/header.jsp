@@ -26,25 +26,32 @@
 
         <c:choose>
             <c:when test="${not empty user}">
-                <div class="btn-group btn-group-lg">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                            <span>${not empty total ? total : '0.00'} uah</span><br/>
-                            <span>${not empty cart ? cart.size() : 0} tickets</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <c:forEach items="${cart.values()}" var="ticket">
-                                <span class="dropdown-item">${ticket.exposition.title} : ${ticket.exposition.price}</span>
-                                <div class="dropdown-divider"></div>
-                            </c:forEach>
-                            <span class="dropdown-item">total: ${sessionScope.total}</span>
+                <c:if test="${user.accountStatus == 'CUSTOMER'}">
+                    <div class="btn-group btn-group-lg">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                <span>${not empty total ? total : '0.00'} uah</span><br/>
+                                <span>${not empty cart ? cart.size() : 0} tickets</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <c:forEach items="${cart.values()}" var="ticket">
+                                    <span class="dropdown-item">${ticket.exposition.title} : ${ticket.exposition.price}</span>
+                                    <div class="dropdown-divider"></div>
+                                </c:forEach>
+                                <span class="dropdown-item">total: ${sessionScope.total}</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <button type="button" class="btn btn-info">
-                        <a href="cart" class="nav-link text-light">Checkout</a>
-                    </button>
-                </div>
+                        <button type="button" class="btn btn-info">
+                            <a href="cart" class="nav-link text-light">Checkout</a>
+                        </button>
+                    </div>
+                </c:if>
+                <c:if test="${user.accountStatus == 'ADMIN'}">
+                    <a type="button" class="btn btn-light btn-lg" href="/admin">
+                        Admin
+                    </a>
+                </c:if>
                 <a type="button" class="btn btn-light btn-lg" href="/logout">
                     <fmt:message bundle="${message}" key="expo.logout"/>
                 </a>
