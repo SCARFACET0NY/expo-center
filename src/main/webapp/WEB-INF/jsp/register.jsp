@@ -63,6 +63,7 @@
                 </div>
                 <button type="submit" id="userRegister" class="btn btn-info btn-block">Register</button>
             </form>
+            <a class="btn btn-dark btn-block" href="/">Home</a>
         </div>
     </div>
 

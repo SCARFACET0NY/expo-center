@@ -17,11 +17,13 @@ public class ExpositionDaoImpl implements ExpositionDao {
     private final String CREATE_EXPOSITION = "INSERT INTO exposition (title, description, price, image_path, " +
                 "start_date, end_date, hall_id) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private final String GET_EXPOSITION_BY_ID = "SELECT exposition_id, title, description, price, image_path," +
+    private final String GET_ALL_ACTIVE_EXPOSITIONS = "SELECT exposition_id, title, description, price, image_path, " +
+            "start_date, end_date, hall_id FROM exposition WHERE end_date > ?";
+    private final String GET_EXPOSITION_BY_ID = "SELECT exposition_id, title, description, price, image_path, " +
             "start_date, end_date, hall_id FROM exposition WHERE exposition_id = ?";
-    private final String GET_EXPOSITIONS_FOR_HALL = "SELECT exposition_id, title, description, price, image_path," +
+    private final String GET_EXPOSITIONS_FOR_HALL = "SELECT exposition_id, title, description, price, image_path, " +
             "start_date, end_date, hall_id FROM exposition WHERE hall_id = ? AND end_date > ?";
-    private final String SEARCH_EXPOSITIONS_BY_TITLE = "SELECT exposition_id, title, description, price, image_path," +
+    private final String SEARCH_EXPOSITIONS_BY_TITLE = "SELECT exposition_id, title, description, price, image_path, " +
             "start_date, end_date, hall_id FROM exposition WHERE title LIKE ? AND end_date > ?";
     private final String UPDATE_EXPOSITION = "UPDATE exposition SET title = ?, description = ?, price = ?, " +
             "image_path = ?, start_date = ?, end_date = ?, hall_id = ? WHERE exposition_id = ?";
@@ -108,6 +110,33 @@ public class ExpositionDaoImpl implements ExpositionDao {
     @Override
     public void delete(Exposition exposition) {
 
+    }
+
+    @Override
+    public List<Exposition> getAllActiveExpositions() {
+        List<Exposition> expositions = new ArrayList<>();
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_ALL_ACTIVE_EXPOSITIONS)) {
+            statement.setDate(1, Date.valueOf(LocalDate.now()));
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Exposition exposition = new Exposition();
+                exposition.setId(rs.getLong("exposition_id"));
+                exposition.setTitle(rs.getString("title"));
+                exposition.setDescription(rs.getString("description"));
+                exposition.setPrice(rs.getDouble("price"));
+                exposition.setImagePath(rs.getString("image_path"));
+                exposition.setStartDate(rs.getDate("start_date").toLocalDate());
+                exposition.setEndDate(rs.getDate("end_date").toLocalDate());
+                exposition.setHallId(rs.getLong("hall_id"));
+
+                expositions.add(exposition);
+            }
+        } catch (SQLException e) {
+            LOG.error("Extraction of all active expositions failed.", e);
+            throw new ExpositionException("Can't get all active expositions: " + e.getMessage(), e);
+        }
+        return expositions;
     }
 
     @Override

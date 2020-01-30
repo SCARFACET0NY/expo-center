@@ -15,7 +15,9 @@
 <body>
     <jsp:include page="admin-header.jsp"/>
     <jsp:include page="sub-header.jsp"/>
-    <h1>Hello</h1>
+    <div class="container-fluid">
+        <h2>Admin</h2>
+    </div>
     <jsp:include page="footer.jsp"/>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

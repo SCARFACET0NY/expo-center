@@ -5,6 +5,8 @@ import com.anton.expo.repository.entity.Exposition;
 import java.util.List;
 
 public interface ExpositionDao extends Dao<Exposition> {
+    List<Exposition> getAllActiveExpositions();
+
     List<Exposition> getActiveExpositionsForHall(long id);
 
     List<Exposition> searchByTitle(String query);

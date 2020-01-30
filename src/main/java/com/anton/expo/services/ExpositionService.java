@@ -9,12 +9,20 @@ import java.util.List;
 public class ExpositionService {
     private ExpositionDao expositionDao = DaoFactory.getExpositionDao();
 
+    public List<Exposition> getAllActiveExpositions() {
+        return expositionDao.getAllActiveExpositions();
+    }
+
     public List<Exposition> getActiveExpositionsForHall(long id) {
         return expositionDao.getActiveExpositionsForHall(id);
     }
 
     public Exposition getExpositionById(long id) {
         return expositionDao.get(id);
+    }
+
+    public void updateExposition(Exposition exposition) {
+        expositionDao.update(exposition);
     }
 
     public List<Exposition> searchExpositionsByTitle(String query) {
