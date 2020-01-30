@@ -9,32 +9,18 @@
 </head>
 <body>
     <div class="container">
-        <h2>Choose Exposition</h2>
-        <form action="chooseExposition" method="get">
-            <div class="form-group">
-                <label for="expositions">Choose Exposition:</label>
-                <select name="exposition_id" id="expositions" class="form-control">
-                    <c:forEach items="${requestScope.expositions}" var="exposition">
-                        <option value="${exposition.id}">${exposition.title}</option>
-                    </c:forEach>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-info btn-block">Choose</button>
-        </form>
-        <hr/>
-
-        <h2>Update Exposition</h2>
-        <form action="updateExposition" method="post">
+        <h2>Add Exposition</h2>
+        <form action="addExposition" method="post">
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" id="title" class="form-control"
-                       value=""
-                       name="title">
+                   value=""
+                   name="title">
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
                 <textarea type="text" id="description" class="form-control"
-                       value="" name="description"></textarea>
+                          value="" name="description"></textarea>
             </div>
             <div class="form-group">
                 <label for="price">Price:</label>
