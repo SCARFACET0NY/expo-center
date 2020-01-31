@@ -194,3 +194,11 @@ footer .logo span {
     font-size: 22px;
     text-align: center;
 }
+
+#accordion a {
+    color: black;
+}
+
+#accordion .container-fluid {
+    padding: 0;
+}

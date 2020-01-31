@@ -45,6 +45,10 @@
                         <a href="cart" class="nav-link text-light">Checkout</a>
                     </button>
                 </div>
+
+                <a type="button" class="btn btn-light btn-lg" href="/purchaseHistory">
+                    Purchase History
+                </a>
                 <c:if test="${user.accountStatus == 'ADMIN'}">
                     <a type="button" class="btn btn-light btn-lg" href="/admin">
                         Admin
