@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AddExpositionForm implements Command {
+public class UpdateExpositionFormCommand implements Command {
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.setAttribute("expositions", ServiceFactory.getExpositionService().getAllActiveExpositions());
         req.setAttribute("halls", ServiceFactory.getHallService().getAllHalls());
 
-        return new String[] {"add-exposition", "forward"};
+        return new String[] {"update-exposition", "forward"};
     }
 }
