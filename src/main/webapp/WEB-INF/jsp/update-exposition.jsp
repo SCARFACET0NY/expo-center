@@ -10,12 +10,14 @@
 <body>
     <div class="container">
         <h2>Choose Exposition</h2>
-        <form action="chooseExposition" method="get">
+        <form action="/chooseExposition" method="get">
             <div class="form-group">
                 <label for="expositions">Choose Exposition:</label>
                 <select name="exposition_id" id="expositions" class="form-control">
                     <c:forEach items="${requestScope.expositions}" var="exposition">
-                        <option value="${exposition.id}">${exposition.title}</option>
+                        <option value="${exposition.id}"
+                            ${exposition.id == requestScope.exposition.id ? 'selected' : ''}>${exposition.title}
+                        </option>
                     </c:forEach>
                 </select>
             </div>
@@ -23,54 +25,58 @@
         </form>
         <hr/>
 
-        <h2>Update Exposition</h2>
-        <form action="updateExposition" method="post">
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" id="title" class="form-control"
-                       value=""
-                       name="title">
-            </div>
-            <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea type="text" id="description" class="form-control"
-                       value="" name="description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" id="price" class="form-control" step="any"
-                       value=""
-                       name="price">
-            </div>
-            <div class="form-group">
-                <label for="image_path">Image Path:</label>
-                <input type="text" id="image_path" class="form-control"
-                       value=""
-                       name="image_path">
-            </div>
-            <div class="form-group">
-                <label for="start_date">Start Date:</label>
-                <input type="date"  id="start_date"
-                       value=""
-                       name="start_date" >
-            </div>
-            <div class="form-group">
-                <label for="end_date">End Date:</label>
-                <input type="date"  id="end_date"
-                       value=""
-                       name="end_date" >
-            </div>
-            <div class="form-group">
-                <label for="halls">Choose Hall:</label>
-                <select name="hall_id" id="halls" class="form-control">
-                    <c:forEach items="${requestScope.halls}" var="hall">
-                        <option value="${hall.id}">${hall.title}</option>
-                    </c:forEach>
-                </select>
-            </div>
-            <button type="submit" id="userLogin" class="btn btn-info btn-block">Update</button>
-            <a class="btn btn-dark btn-block" href="/admin">Admin</a>
-        </form>
+        <c:if test="${not empty requestScope.exposition}">
+            <h2>Update Exposition</h2>
+            <form action="/updateExposition" method="post">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" class="form-control"
+                           value="${requestScope.exposition.title}"
+                           name="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea type="text" id="description" class="form-control"
+                              name="description">${requestScope.exposition.description}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" class="form-control" step="any"
+                           value="${requestScope.exposition.price}"
+                           name="price">
+                </div>
+                <div class="form-group">
+                    <label for="image_path">Image Path:</label>
+                    <input type="text" id="image_path" class="form-control"
+                           value="${requestScope.exposition.imagePath}"
+                           name="image_path">
+                </div>
+                <div class="form-group">
+                    <label for="start_date">Start Date:</label>
+                    <input type="date"  id="start_date"
+                           value="${requestScope.exposition.startDate}"
+                           name="start_date" >
+                </div>
+                <div class="form-group">
+                    <label for="end_date">End Date:</label>
+                    <input type="date"  id="end_date"
+                           value="${requestScope.exposition.endDate}"
+                           name="end_date" >
+                </div>
+                <div class="form-group">
+                    <label for="halls">Choose Hall:</label>
+                    <select name="hall_id" id="halls" class="form-control">
+                        <c:forEach items="${requestScope.halls}" var="hall">
+                            <option value="${hall.id}" ${requestScope.exposition.hallId == hall.id ? 'selected' : ''}>
+                                    ${hall.title}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <button type="submit" id="userLogin" class="btn btn-info btn-block">Update</button>
+                <a class="btn btn-dark btn-block" href="/admin">Admin</a>
+            </form>
+        </c:if>
     </div>
 </body>
 </html>

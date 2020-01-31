@@ -3,6 +3,7 @@ package com.anton.expo.factory;
 import com.anton.expo.commands.Command;
 import com.anton.expo.commands.exposition.AddExpositionCommand;
 import com.anton.expo.commands.exposition.AddExpositionFormCommand;
+import com.anton.expo.commands.exposition.ChooseExpositionCommand;
 import com.anton.expo.commands.exposition.UpdateExpositionFormCommand;
 import com.anton.expo.commands.login.LogoutCommand;
 import com.anton.expo.commands.mail.SendMailCommand;
@@ -32,6 +33,7 @@ public class CommandFactory {
         commandMap.put("admin/update", new UpdateExpositionFormCommand());
         commandMap.put("addTicket", new AddTicketCommand());
         commandMap.put("cart", new CartCommand());
+        commandMap.put("chooseExposition", new ChooseExpositionCommand());
         commandMap.put("largeHall", new LargeHallCommand());
         commandMap.put("login", new LoginCommand());
         commandMap.put("logout", new LogoutCommand());
