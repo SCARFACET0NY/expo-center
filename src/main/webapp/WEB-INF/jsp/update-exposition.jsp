@@ -30,6 +30,7 @@
             <form action="/updateExposition" method="post">
                 <div class="form-group">
                     <label for="title">Title:</label>
+                    <input type="hidden" name="exposition_id" value="${requestScope.exposition.id}"/>
                     <input type="text" id="title" class="form-control"
                            value="${requestScope.exposition.title}"
                            name="title">
@@ -73,7 +74,7 @@
                         </c:forEach>
                     </select>
                 </div>
-                <button type="submit" id="userLogin" class="btn btn-info btn-block">Update</button>
+                <button type="submit" class="btn btn-info btn-block">Update</button>
                 <a class="btn btn-dark btn-block" href="/admin">Admin</a>
             </form>
         </c:if>
