@@ -10,9 +10,7 @@ import java.io.IOException;
 public class HomeCommand implements Command {
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if (req.getAttribute("halls") == null) {
-            req.setAttribute("halls", ServiceFactory.getHallService().getAllHalls());
-        }
+        req.setAttribute("halls", ServiceFactory.getHallService().getAllHalls());
 
         return new String[] {"index", "forward"};
     }
