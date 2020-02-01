@@ -199,6 +199,34 @@ footer .logo span {
     color: black;
 }
 
+#accordion .card {
+    margin-bottom: 0;
+    border-radius: 0.25em;
+}
+
 #accordion .container-fluid {
     padding: 0;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 1.5em;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 1.5em;
+    margin-bottom: 3em;
+    font-size: 1.5em;
+    color: grey;
+}
+
+.pagination a {
+    color: black;
+}
+
+.pagination .active {
+    color: cornflowerblue;
 }

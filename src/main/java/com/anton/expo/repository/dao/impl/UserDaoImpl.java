@@ -21,10 +21,11 @@ public class UserDaoImpl implements UserDao {
             "username, password, account_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String GET_PASSWORD = "SELECT password FROM `user` WHERE username = ?";
     private final String GET_USER = "SELECT user_id, first_name, last_name, phone, email, date_joined, card_number, username, " +
-            "password, account_status FROM `user` WHERE user_id = ?";
-    private final String GET_USER_PURCHASES = "SELECT card_number, payment_id, payment_date, total FROM `user` " +
+            "password, account_status FROM `user` WHERE user_id = ? ";
+    private final String GET_USER_PURCHASES_NUMBER = "SELECT COUNT(payment_id) FROM payment WHERE user_id = ?";
+    private final String GET_USER_PURCHASES_PAGED = "SELECT card_number, payment_id, payment_date, total FROM `user` " +
             "LEFT JOIN payment ON `user`.user_id = payment.user_id " +
-            "WHERE `user`.user_id = ?";
+            "WHERE `user`.user_id = ? ORDER BY payment_date DESC LIMIT ?, ?";
     private final String LAST_ID = "SELECT LAST_INSERT_ID()";
 
     public UserDaoImpl(Connection connection) {
@@ -137,10 +138,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<Purchase> getUserPurchases(long userId) {
+    public List<Purchase> getUserPurchasesPaged(long userId, int offset, int numPerPage) {
         List<Purchase> purchases = null;
-        try (PreparedStatement statement = this.connection.prepareStatement(GET_USER_PURCHASES)) {
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_USER_PURCHASES_PAGED)) {
             statement.setLong(1, userId);
+            statement.setInt(2, offset);
+            statement.setInt(3, numPerPage);
 
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -155,9 +158,26 @@ public class UserDaoImpl implements UserDao {
                 purchases.add(purchase);
             }
         } catch (SQLException e) {
-            LOG.error("Extraction of users purchases failed.", e);
-            throw new UserException("Can't extract users purchases: " + e.getMessage(), e);
+            LOG.error("Extraction of user's purchases failed.", e);
+            throw new UserException("Can't extract user's purchases: " + e.getMessage(), e);
         }
         return purchases;
+    }
+
+    @Override
+    public int getNumberPurchasesByUserId(long userId) {
+        int numOfPurchases = 0;
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_USER_PURCHASES_NUMBER)) {
+            statement.setLong(1, userId);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                numOfPurchases = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            LOG.error("Extraction of number of user's purchases failed.", e);
+            throw new UserException("Can't extract number of user's purchases: " + e.getMessage(), e);
+        }
+        return numOfPurchases;
     }
 }

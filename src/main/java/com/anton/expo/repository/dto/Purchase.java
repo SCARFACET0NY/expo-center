@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,5 +15,5 @@ public class Purchase {
     private long cardNumber;
     private LocalDateTime date;
     private double total;
-    private List<TicketDto> tickets = new ArrayList<>();
+    private List<TicketDto> tickets;
 }

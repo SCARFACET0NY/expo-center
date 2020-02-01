@@ -2,14 +2,19 @@ package com.anton.expo.services;
 
 import com.anton.expo.enums.AccountStatus;
 import com.anton.expo.factory.DaoFactory;
+import com.anton.expo.repository.dao.PaymentDao;
 import com.anton.expo.repository.dao.UserDao;
+import com.anton.expo.repository.dto.Purchase;
 import com.anton.expo.repository.entity.User;
 import com.anton.expo.utils.UpdatableBCrypt;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class UserService {
+    private static final int ROWS_PER_PAGE = 10;
     private UserDao userDao = DaoFactory.getUserDao();
+    private PaymentDao paymentDao = DaoFactory.getPaymentDao();
     private UpdatableBCrypt bCrypt = new UpdatableBCrypt(11);
 
     public long registerUser(String firstName, String lastName, String phone, String email, LocalDateTime dateJoined,
@@ -32,5 +37,18 @@ public class UserService {
 
     public boolean verifyUser(String username, String password) {
         return userDao.checkUsername(username) > 0 && bCrypt.verifyHash(password, userDao.getPasswordForUsername(username));
+    }
+
+    public List<Purchase> getPurchasesPageByUserId(long id, int pageNumber) {
+        List<Purchase> purchases = userDao.getUserPurchasesPaged(id, ROWS_PER_PAGE * pageNumber, ROWS_PER_PAGE);
+        purchases.forEach(purchase -> {
+            purchase.setTickets(paymentDao.getTicketsByPaymentId(purchase.getPaymentId()));
+        });
+
+        return purchases;
+    }
+
+    public int getNumberOfPagesByUserId(long id) {
+        return userDao.getNumberPurchasesByUserId(id) / ROWS_PER_PAGE;
     }
 }

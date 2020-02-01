@@ -14,7 +14,7 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="?locale=en">en</a>
                 <a class="dropdown-item" href="?locale=ru">ru</a>
-                <a class="dropdown-item" href="?locale=ua">ua</a>
+                <a class="dropdown-item" href="?locale=uk">uk</a>
             </div>
         </div>
         <div class="logo">

@@ -10,5 +10,7 @@ public interface UserDao extends Dao<User> {
 
     String getPasswordForUsername(String username);
 
-    List<Purchase> getUserPurchases(long userId);
+    List<Purchase> getUserPurchasesPaged(long userId, int offset, int numPerPage);
+
+    int getNumberPurchasesByUserId(long userId);
 }
