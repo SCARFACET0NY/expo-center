@@ -39,8 +39,8 @@ public class TicketService {
     }
 
     public double getCartTotal(Map<String, TicketDto> cart) {
-        return cart.values().stream()
+        return Math.round(cart.values().stream()
                 .mapToDouble(item -> item.getExposition().getPrice() * item.getTicket().getQuantity())
-                .reduce(0.0, Double::sum);
+                .reduce(0.0, Double::sum) * 100) / 100.0;
     }
 }

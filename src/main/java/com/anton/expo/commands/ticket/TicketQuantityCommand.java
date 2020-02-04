@@ -1,6 +1,7 @@
 package com.anton.expo.commands.ticket;
 
 import com.anton.expo.commands.Command;
+import com.anton.expo.factory.ServiceFactory;
 import com.anton.expo.repository.dto.TicketDto;
 import com.anton.expo.repository.entity.Exposition;
 import com.anton.expo.repository.entity.Ticket;
@@ -21,14 +22,13 @@ public class TicketQuantityCommand implements Command {
         Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
         if (cart.containsKey(expositionId)) {
             Ticket ticket = cart.get(expositionId).getTicket();
-            Exposition exposition = cart.get(expositionId).getExposition();
             if (sign.equals("+")) {
                 ticket.setQuantity(ticket.getQuantity() + 1);
-                session.setAttribute("total", (double) session.getAttribute("total") + exposition.getPrice());
+                session.setAttribute("total", ServiceFactory.getTicketService().getCartTotal(cart));
             } else if (sign.equals("-")) {
                 if (ticket.getQuantity() > 1) {
                     ticket.setQuantity(ticket.getQuantity() - 1);
-                    session.setAttribute("total", (double) session.getAttribute("total") - exposition.getPrice());
+                    session.setAttribute("total", ServiceFactory.getTicketService().getCartTotal(cart));
                 }
             }
         }
