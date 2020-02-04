@@ -49,8 +49,7 @@ public class SendMailCommand implements Command {
 
         cart.clear();
         session.setAttribute("cart", null);
-        session.setAttribute("total", null
-        );
+        session.setAttribute("total", null);
 
         return new String[] {"", "redirect"};
     }

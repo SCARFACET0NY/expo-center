@@ -5,7 +5,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/main.css" charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
     <div class="container">
@@ -75,9 +75,9 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-info btn-block">Update</button>
-                <a class="btn btn-dark btn-block" href="/admin">Admin</a>
             </form>
         </c:if>
+        <a class="btn btn-dark btn-block" href="/admin">Admin</a>
     </div>
 </body>
 </html>
