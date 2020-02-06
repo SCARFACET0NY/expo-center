@@ -5,15 +5,15 @@ import com.anton.expo.exceptions.UserException;
 import com.anton.expo.repository.dao.UserDao;
 import com.anton.expo.repository.dto.Purchase;
 import com.anton.expo.repository.entity.User;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
+    private static final Logger LOG = LogManager.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
     private final String CHECK_USER = "SELECT user_id FROM `user` WHERE username = ?";

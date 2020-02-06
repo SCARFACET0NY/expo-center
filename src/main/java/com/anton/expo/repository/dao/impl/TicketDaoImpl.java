@@ -3,13 +3,14 @@ package com.anton.expo.repository.dao.impl;
 import com.anton.expo.exceptions.TicketException;
 import com.anton.expo.repository.dao.TicketDao;
 import com.anton.expo.repository.entity.Ticket;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.List;
 
 public class TicketDaoImpl implements TicketDao {
-    private static final Logger LOG = Logger.getLogger(TicketDaoImpl.class);
+    private static final Logger LOG = LogManager.getLogger(TicketDaoImpl.class);
     private final Connection connection;
 
     private final String CREATE_TICKET = "INSERT INTO ticket (`date`, quantity, exposition_id, payment_id) " +

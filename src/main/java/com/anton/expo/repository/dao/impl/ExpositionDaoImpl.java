@@ -3,7 +3,8 @@ package com.anton.expo.repository.dao.impl;
 import com.anton.expo.exceptions.ExpositionException;
 import com.anton.expo.repository.dao.ExpositionDao;
 import com.anton.expo.repository.entity.Exposition;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExpositionDaoImpl implements ExpositionDao {
-    private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
+    private static final Logger LOG = LogManager.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
     private final String CREATE_EXPOSITION = "INSERT INTO exposition (title, description, price, image_path, " +

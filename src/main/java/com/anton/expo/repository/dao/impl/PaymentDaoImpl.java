@@ -6,14 +6,15 @@ import com.anton.expo.repository.dto.TicketDto;
 import com.anton.expo.repository.entity.Exposition;
 import com.anton.expo.repository.entity.Payment;
 import com.anton.expo.repository.entity.Ticket;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDaoImpl implements PaymentDao {
-    private static final Logger LOG = Logger.getLogger(PaymentDaoImpl.class);
+    private static final Logger LOG = LogManager.getLogger(PaymentDaoImpl.class);
     private final Connection connection;
 
     private final String CREATE_PAYMENT = "INSERT INTO payment (total, payment_date, user_id) VALUES (?, ?, ?)";

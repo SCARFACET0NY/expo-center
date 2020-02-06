@@ -4,7 +4,8 @@ import com.anton.expo.enums.HallType;
 import com.anton.expo.repository.dao.HallDao;
 import com.anton.expo.repository.entity.Hall;
 import com.anton.expo.exceptions.HallException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HallDaoImpl implements HallDao {
-    private static final Logger LOG = Logger.getLogger(HallDaoImpl.class);
+    private static final Logger LOG = LogManager.getLogger(HallDaoImpl.class);
     private final Connection connection;
 
     private final String GET_ALL_HALLS = "SELECT hall_id, title, area, image_path, `type` FROM hall";
