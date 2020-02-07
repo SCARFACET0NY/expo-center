@@ -24,11 +24,11 @@ public class TicketQuantityCommand implements Command {
             Ticket ticket = cart.get(expositionId).getTicket();
             if (sign.equals("+")) {
                 ticket.setQuantity(ticket.getQuantity() + 1);
-                session.setAttribute("total", ServiceFactory.getTicketService().getCartTotal(cart));
+                session.setAttribute("total", ServiceFactory.getPaymentService().getCartTotal(cart));
             } else if (sign.equals("-")) {
                 if (ticket.getQuantity() > 1) {
                     ticket.setQuantity(ticket.getQuantity() - 1);
-                    session.setAttribute("total", ServiceFactory.getTicketService().getCartTotal(cart));
+                    session.setAttribute("total", ServiceFactory.getPaymentService().getCartTotal(cart));
                 }
             }
         }

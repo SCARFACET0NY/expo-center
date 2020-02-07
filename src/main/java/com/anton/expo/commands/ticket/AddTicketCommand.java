@@ -23,10 +23,10 @@ public class AddTicketCommand implements Command {
 
         if (expositionId != null) {
             if (!cart.containsKey(expositionId)) {
-                cart.put(expositionId, ServiceFactory.getTicketService().createTicketDto(Long.parseLong(expositionId)));
+                cart.put(expositionId, ServiceFactory.getPaymentService().createTicketDto(Long.parseLong(expositionId)));
             }
         }
-        double total = ServiceFactory.getTicketService().getCartTotal(cart);
+        double total = ServiceFactory.getPaymentService().getCartTotal(cart);
 
         session.setAttribute("cart", cart);
         session.setAttribute("total", total);

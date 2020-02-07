@@ -18,13 +18,9 @@ public class PayTicketsCommand implements Command {
         Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
 
         if (!cart.isEmpty()) {
-            double total = ServiceFactory.getTicketService().getCartTotal(cart);
+            double total = ServiceFactory.getPaymentService().getCartTotal(cart);
             long userId = ((User)session.getAttribute("user")).getId();
-            long paymentId = ServiceFactory.getPaymentService().savePayment(total, userId);
-
-            cart.values().forEach(ticketDto -> {
-                ServiceFactory.getTicketService().saveTicket(ticketDto.getTicket(), paymentId);
-            });
+            ServiceFactory.getPaymentService().savePayment(total, userId, cart);
 
             return new String[] {"sendMail", "redirect"};
         }

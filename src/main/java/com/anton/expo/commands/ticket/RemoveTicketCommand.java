@@ -18,7 +18,7 @@ public class RemoveTicketCommand implements Command {
         Map<String, TicketDto> cart = (Map<String, TicketDto>) session.getAttribute("cart");
 
         cart.keySet().removeIf(id -> id.equals(expositionId));
-        double total = ServiceFactory.getTicketService().getCartTotal(cart);
+        double total = ServiceFactory.getPaymentService().getCartTotal(cart);
 
         session.setAttribute("cart", cart);
         session.setAttribute("total", total);
