@@ -29,29 +29,37 @@
                 <div class="btn-group btn-group-lg">
                     <div class="btn-group">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                            <span>${not empty total ? total : '0.00'} uah</span><br/>
-                            <span>${not empty cart ? cart.size() : 0} tickets</span>
+                            <span>
+                                ${not empty total ? total : '0.00'} <fmt:message bundle="${message}" key="expo.uah"/>
+                            </span><br/>
+                            <span>
+                                ${not empty cart ? cart.size() : 0} <fmt:message bundle="${message}" key="expo.tickets"/>
+                            </span>
                         </button>
                         <div class="dropdown-menu">
                             <c:forEach items="${cart.values()}" var="ticket">
                                 <span class="dropdown-item">${ticket.exposition.title} : ${ticket.exposition.price}</span>
                                 <div class="dropdown-divider"></div>
                             </c:forEach>
-                            <span class="dropdown-item">total: ${sessionScope.total}</span>
+                            <span class="dropdown-item">
+                                <fmt:message bundle="${message}" key="expo.total"/>: ${sessionScope.total}
+                            </span>
                         </div>
                     </div>
 
                     <button type="button" class="btn btn-info">
-                        <a href="cart" class="nav-link text-light">Checkout</a>
+                        <a href="cart" class="nav-link text-light">
+                            <fmt:message bundle="${message}" key="expo.checkout"/>
+                        </a>
                     </button>
                 </div>
 
                 <a type="button" class="btn btn-light btn-lg" href="/purchaseHistory">
-                    Purchase History
+                    <fmt:message bundle="${message}" key="expo.purchase.history"/>
                 </a>
                 <c:if test="${user.accountStatus == 'ADMIN'}">
                     <a type="button" class="btn btn-light btn-lg" href="/admin">
-                        Admin
+                        <fmt:message bundle="${message}" key="expo.admin"/>
                     </a>
                 </c:if>
                 <a type="button" class="btn btn-light btn-lg" href="/logout">

@@ -18,7 +18,7 @@ public class SearchCommand implements Command {
             if (!expositions.isEmpty()) {
                 req.setAttribute("expositions", expositions);
             } else {
-                req.setAttribute("emptySearch", "No Expositions Found");
+                req.setAttribute("emptySearch", "not found");
             }
         }
 

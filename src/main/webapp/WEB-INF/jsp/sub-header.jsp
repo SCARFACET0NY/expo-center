@@ -31,7 +31,7 @@
             <a class="nav-link ${requestScope['javax.servlet.forward.request_uri'].equals("/search")
                                  ? "text-light" : ""}" href="/search">
                 <img class="icon" src="img/search_icon.png"/>
-                <span>Search</span>
+                <span><fmt:message bundle="${message}" key="expo.search"/></span>
             </a>
         </li>
     </ul>

@@ -15,7 +15,7 @@
         </div>
         <div class="copyright">
         <span class="text-light">
-            © 2019 <fmt:message bundle="${message}" key="expo.developer"/>:
+            © 2020 <fmt:message bundle="${message}" key="expo.developer"/>:
             <fmt:message bundle="${message}" key="expo.author"/>
         </span>
         </div>
