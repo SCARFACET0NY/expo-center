@@ -240,3 +240,7 @@ footer .logo span {
     pointer-events: none;
     color: gray;
 }
+
+.red {
+    color: red;
+}

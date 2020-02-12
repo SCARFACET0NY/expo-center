@@ -19,6 +19,7 @@ public class LoginCommand implements Command {
 
                 return new String[] {"", "redirect"};
             }
+            req.setAttribute("invalid", "invalid");
         }
         return new String[] {"login", "forward"};
     }

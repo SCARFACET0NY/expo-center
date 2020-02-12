@@ -52,6 +52,7 @@
                     <input type="text" id="username" class="form-control"
                            placeholder="Enter username"
                            required="required"
+                           minlength="3"
                            name="userName">
                 </div>
                 <div class="form-group">
@@ -59,6 +60,7 @@
                     <input type="password" id="password" class="form-control"
                            placeholder="Enter password"
                            required="required"
+                           minlength="5"
                            name="password">
                 </div>
                 <button type="submit" id="userRegister" class="btn btn-info btn-block">Register</button>

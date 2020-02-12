@@ -26,7 +26,6 @@
 
         <a type="button" class="btn btn-light btn-lg" href="/admin/add">Add Exposition</a>
         <a type="button" class="btn btn-light btn-lg" href="/admin/update">Update Exposition</a>
-        <a type="button" class="btn btn-light btn-lg" href="/admin/statistics">Statistics</a>
         <a type="button" class="btn btn-light btn-lg" href="/logout">Logout</a>
     </nav>
 </header>
