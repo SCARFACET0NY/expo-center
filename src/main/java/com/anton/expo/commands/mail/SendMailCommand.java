@@ -43,6 +43,8 @@ public class SendMailCommand implements Command {
                     properties.getProperty("mail.smtp.password"));
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
+
+            session.setAttribute("mailSuccess", "success");
         } catch (MessagingException e) {
             e.printStackTrace();
         }

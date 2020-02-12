@@ -12,6 +12,10 @@ public class HomeCommand implements Command {
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setAttribute("halls", ServiceFactory.getHallService().getAllHalls());
+        if (req.getSession().getAttribute("mailSuccess") != null) {
+            req.setAttribute("mailSuccess", req.getSession().getAttribute("mailSuccess"));
+            req.getSession().setAttribute("mailSuccess", null);
+        }
 
         return new String[] {"index", "forward"};
     }

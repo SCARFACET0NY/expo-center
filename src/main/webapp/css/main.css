@@ -199,6 +199,10 @@ footer .logo span {
     text-align: center;
 }
 
+.alert-success a {
+    color: green;
+}
+
 #accordion a {
     color: black;
 }
