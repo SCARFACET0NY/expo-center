@@ -14,7 +14,7 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="?locale=en">en</a>
                 <a class="dropdown-item" href="?locale=ru">ru</a>
-                <a class="dropdown-item" href="?locale=ua">ua</a>
+                <a class="dropdown-item" href="?locale=uk">uk</a>
             </div>
         </div>
         <div class="logo">
@@ -24,8 +24,14 @@
             </a>
         </div>
 
-        <a type="button" class="btn btn-light btn-lg" href="/admin/add">Add Exposition</a>
-        <a type="button" class="btn btn-light btn-lg" href="/admin/update">Update Exposition</a>
-        <a type="button" class="btn btn-light btn-lg" href="/logout">Logout</a>
+        <a type="button" class="btn btn-light btn-lg" href="/admin/add">
+            <fmt:message bundle="${message}" key="expo.exposition.add"/>
+        </a>
+        <a type="button" class="btn btn-light btn-lg" href="/admin/update">
+            <fmt:message bundle="${message}" key="expo.exposition.update"/>
+        </a>
+        <a type="button" class="btn btn-light btn-lg" href="/logout">
+            <fmt:message bundle="${message}" key="expo.logout"/>
+        </a>
     </nav>
 </header>

@@ -13,13 +13,13 @@
 <body>
     <div class="login">
         <div class="container">
-            <h2>Login</h2>
+            <h2><fmt:message bundle="${message}" key="expo.login"/></h2>
             <c:if test="${not empty requestScope.invalid}">
                 <p class="red"><fmt:message bundle="${message}" key="expo.login.invalid"/></p>
             </c:if>
             <form action="login" method="post" id="loginForm">
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username"><fmt:message bundle="${message}" key="expo.login.username"/>:</label>
                     <input type="text" id="username" class="form-control"
                            placeholder="Enter username"
                            required="required"
@@ -27,16 +27,18 @@
                            name="username">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password"><fmt:message bundle="${message}" key="expo.login.password"/>:</label>
                     <input type="password" id="password" class="form-control"
                            placeholder="Enter password"
                            required="required"
                            minlength="5"
                            name="password">
                 </div>
-                <button type="submit" id="userLogin" class="btn btn-info btn-block">Login</button>
-                <a href="register" class="btn btn-dark btn-block">Register</a>
-                <a href="/" class="btn btn-info btn-block">Home</a>
+                <button type="submit" id="userLogin" class="btn btn-info btn-block">
+                    <fmt:message bundle="${message}" key="expo.login"/>
+                </button>
+                <a href="register" class="btn btn-dark btn-block"><fmt:message bundle="${message}" key="expo.register"/></a>
+                <a href="/" class="btn btn-info btn-block"><fmt:message bundle="${message}" key="expo.home"/></a>
             </form>
         </div>
     </div>

@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<fmt:setBundle basename="application" var="message"/>
 
 <html>
 <head>
@@ -9,24 +13,24 @@
 <body>
     <div class="register">
         <div class="container">
-            <h2>Register</h2>
+            <h2><fmt:message bundle="${message}" key="expo.register"/></h2>
             <form action="register" method="post" id="registerForm">
                 <div class="form-group">
-                    <label for="first-name">First Name:</label>
+                    <label for="first-name"><fmt:message bundle="${message}" key="expo.register.first"/>:</label>
                     <input type="text" id="first-name" class="form-control"
                            placeholder="Enter First Name"
                            required="required"
                            name="firstName">
                 </div>
                 <div class="form-group">
-                    <label for="last-name">Last Name:</label>
+                    <label for="last-name"><fmt:message bundle="${message}" key="expo.register.last"/>:</label>
                     <input type="text" id="last-name" class="form-control"
                            placeholder="Enter Last Name"
                            required="required"
                            name="lastName">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone:</label>
+                    <label for="phone"><fmt:message bundle="${message}" key="expo.register.phone"/>:</label>
                     <input type="tel" id="phone" class="form-control"
                            placeholder="Format: 123-456-78-90"
                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
@@ -34,14 +38,14 @@
                            name="phone">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label for="email"><fmt:message bundle="${message}" key="expo.register.email"/>:</label>
                     <input type="email" id="email" class="form-control"
                            placeholder="Enter Email"
                            required="required"
                            name="email">
                 </div>
                 <div class="form-group">
-                    <label for="card-number">Card Number:</label>
+                    <label for="card-number"><fmt:message bundle="${message}" key="expo.register.card.number"/>:</label>
                     <input type="number" id="card-number" class="form-control"
                            placeholder="Enter Card Number"
                            min="1000000000" max="9999999999"
@@ -49,7 +53,7 @@
                            name="cardNumber">
                 </div>
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username"><fmt:message bundle="${message}" key="expo.login.username"/>:</label>
                     <input type="text" id="username" class="form-control"
                            placeholder="Enter username"
                            required="required"
@@ -57,16 +61,18 @@
                            name="userName">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password"><fmt:message bundle="${message}" key="expo.login.password"/>:</label>
                     <input type="password" id="password" class="form-control"
                            placeholder="Enter password"
                            required="required"
                            minlength="5"
                            name="password">
                 </div>
-                <button type="submit" id="userRegister" class="btn btn-info btn-block">Register</button>
+                <button type="submit" id="userRegister" class="btn btn-info btn-block">
+                    <fmt:message bundle="${message}" key="expo.register"/>
+                </button>
             </form>
-            <a class="btn btn-dark btn-block" href="/">Home</a>
+            <a class="btn btn-dark btn-block" href="/"><fmt:message bundle="${message}" key="expo.home"/></a>
         </div>
     </div>
 
