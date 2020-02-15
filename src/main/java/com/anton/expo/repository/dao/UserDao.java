@@ -12,5 +12,5 @@ public interface UserDao extends Dao<User> {
 
     List<Purchase> getUserPurchasesPaged(long userId, int offset, int numPerPage);
 
-    int getNumberPurchasesByUserId(long userId);
+    int getNumberOfPurchasesByUserId(long userId);
 }

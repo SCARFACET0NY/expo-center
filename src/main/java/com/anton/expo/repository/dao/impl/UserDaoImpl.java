@@ -165,7 +165,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int getNumberPurchasesByUserId(long userId) {
+    public int getNumberOfPurchasesByUserId(long userId) {
         int numOfPurchases = 0;
         try (PreparedStatement statement = this.connection.prepareStatement(GET_USER_PURCHASES_NUMBER)) {
             statement.setLong(1, userId);

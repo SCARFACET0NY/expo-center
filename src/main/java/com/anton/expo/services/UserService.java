@@ -1,7 +1,6 @@
 package com.anton.expo.services;
 
 import com.anton.expo.enums.AccountStatus;
-import com.anton.expo.factory.DaoFactory;
 import com.anton.expo.repository.dao.PaymentDao;
 import com.anton.expo.repository.dao.UserDao;
 import com.anton.expo.repository.dto.Purchase;
@@ -12,10 +11,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserService {
-    private static final int ROWS_PER_PAGE = 10;
-    private UserDao userDao = DaoFactory.getUserDao();
-    private PaymentDao paymentDao = DaoFactory.getPaymentDao();
-    private UpdatableBCrypt bCrypt = new UpdatableBCrypt(11);
+    public static final int ROWS_PER_PAGE = 10;
+    private UserDao userDao;
+    private PaymentDao paymentDao;
+    private UpdatableBCrypt bCrypt;
+
+    public UserService(UserDao userDao, PaymentDao paymentDao, UpdatableBCrypt bCrypt) {
+        this.userDao = userDao;
+        this.paymentDao = paymentDao;
+        this.bCrypt = bCrypt;
+    }
 
     public long registerUser(String firstName, String lastName, String phone, String email, LocalDateTime dateJoined,
                              long cardNumber, String userName, String password, AccountStatus status) {
@@ -49,6 +54,6 @@ public class UserService {
     }
 
     public int getNumberOfPagesByUserId(long id) {
-        return userDao.getNumberPurchasesByUserId(id) / ROWS_PER_PAGE;
+        return userDao.getNumberOfPurchasesByUserId(id) / ROWS_PER_PAGE;
     }
 }

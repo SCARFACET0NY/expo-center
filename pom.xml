@@ -13,10 +13,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <junit.version>5.5.2</junit.version>
     <commons-dbcp2.version>2.6.0</commons-dbcp2.version>
     <mysql.version>8.0.15</mysql.version>
     <log4j.version>2.9.1</log4j.version>
-    <mockito.version>1.10.19</mockito.version>
+    <mockito.version>2.23.0</mockito.version>
     <jstl.version>1.2</jstl.version>
     <jsp.api.version>2.2</jsp.api.version>
     <servlet.api.version>4.0.1</servlet.api.version>
@@ -29,9 +30,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -68,7 +69,13 @@
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
       <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
