@@ -1,6 +1,5 @@
 package com.anton.expo.services;
 
-import com.anton.expo.factory.DaoFactory;
 import com.anton.expo.repository.dao.ExpositionDao;
 import com.anton.expo.repository.entity.Exposition;
 
@@ -8,7 +7,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ExpositionService {
-    private ExpositionDao expositionDao = DaoFactory.getExpositionDao();
+    private ExpositionDao expositionDao;
+
+    public ExpositionService(ExpositionDao expositionDao) {
+        this.expositionDao = expositionDao;
+    }
 
     public Exposition createExposition(String title, String description, double price, String imagePath,
                                        LocalDate startDate, LocalDate endDate, long hallId) {

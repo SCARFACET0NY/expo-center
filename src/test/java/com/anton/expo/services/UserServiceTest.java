@@ -46,13 +46,13 @@ class UserServiceTest {
 
     @Test
     void registerUserTest() throws Exception {
-        when(userDao.save(any())).thenReturn(ID);
+        when(userDao.save(any(User.class))).thenReturn(ID);
 
         long id = userService.registerUser(null, null, null, null,
                 LocalDateTime.now(), 0L, null, null, AccountStatus.CUSTOMER);
 
         assertEquals(ID, id);
-        verify(userDao).save(any());
+        verify(userDao).save(any(User.class));
     }
 
     @Test

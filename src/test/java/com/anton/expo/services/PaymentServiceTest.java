@@ -94,10 +94,10 @@ class PaymentServiceTest {
 
     @Test
     void savePaymentTest() throws Exception {
-        when(paymentDao.savePaymentWithTickets(any(), anyList())).thenReturn(ID);
+        when(paymentDao.savePaymentWithTickets(any(Payment.class), anyList())).thenReturn(ID);
 
         assertEquals(ID, paymentService.savePayment(TOTAL, ID, cart));
 
-        verify(paymentDao).savePaymentWithTickets(any(), anyList());
+        verify(paymentDao).savePaymentWithTickets(any(Payment.class), anyList());
     }
 }
