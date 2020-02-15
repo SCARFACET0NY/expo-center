@@ -80,7 +80,8 @@ public class PaymentDaoImpl implements PaymentDao {
     }
 
     @Override
-    public void savePaymentWithTickets(Payment payment, List<Ticket> tickets) {
+    public long savePaymentWithTickets(Payment payment, List<Ticket> tickets) {
+        long id = -1;
         try (PreparedStatement paymentStatement = this.connection.prepareStatement(CREATE_PAYMENT);
              Statement idStatement = this.connection.createStatement();
              PreparedStatement ticketStatement = this.connection.prepareStatement(CREATE_TICKET)
@@ -94,7 +95,7 @@ public class PaymentDaoImpl implements PaymentDao {
 
             ResultSet rs = idStatement.executeQuery(LAST_ID);
             while (rs.next()) {
-                long id = rs.getLong(1);
+                id = rs.getLong(1);
 
                 for (Ticket ticket : tickets) {
                     ticket.setPaymentId(id);
@@ -117,5 +118,7 @@ public class PaymentDaoImpl implements PaymentDao {
             }
             throw new PaymentException("Can't create payment with tickets: " + e.getMessage(), e);
         }
+
+        return id;
     }
 }

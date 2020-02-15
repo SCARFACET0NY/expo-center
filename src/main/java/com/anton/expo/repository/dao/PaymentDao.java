@@ -9,5 +9,5 @@ import java.util.List;
 public interface PaymentDao extends Dao<Payment> {
     List<TicketDto> getTicketsByPaymentId(long id);
 
-    void savePaymentWithTickets(Payment payment, List<Ticket> tickets);
+    long savePaymentWithTickets(Payment payment, List<Ticket> tickets);
 }

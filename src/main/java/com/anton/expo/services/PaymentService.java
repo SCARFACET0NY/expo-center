@@ -16,8 +16,13 @@ import java.util.Map;
 
 public class PaymentService {
     public static final int ONE_TICKET = 1;
-    private ExpositionDao expositionDao = DaoFactory.getExpositionDao();
-    private PaymentDao paymentDao = DaoFactory.getPaymentDao();
+    private ExpositionDao expositionDao;
+    private PaymentDao paymentDao;
+
+    public PaymentService(ExpositionDao expositionDao, PaymentDao paymentDao) {
+        this.expositionDao = expositionDao;
+        this.paymentDao = paymentDao;
+    }
 
     public TicketDto createTicketDto(long expositionId) {
         TicketDto ticketDto = new TicketDto();
@@ -47,10 +52,10 @@ public class PaymentService {
                 .reduce(0.0, Double::sum) * 100) / 100.0;
     }
 
-    public void savePayment(double total, long userId, Map<String, TicketDto> cart) {
+    public long savePayment(double total, long userId, Map<String, TicketDto> cart) {
         List<Ticket> tickets = new ArrayList<>();
         cart.values().forEach(ticketDto -> tickets.add(ticketDto.getTicket()));
 
-        paymentDao.savePaymentWithTickets(createPayment(total, userId), tickets);
+        return paymentDao.savePaymentWithTickets(createPayment(total, userId), tickets);
     }
 }

@@ -7,7 +7,8 @@ public class ServiceFactory {
     private static EmailService emailService = new EmailService();
     private static ExpositionService expositionService = new ExpositionService();
     private static HallService hallService = new HallService();
-    private static PaymentService paymentService = new PaymentService();
+    private static PaymentService paymentService = new PaymentService(
+            DaoFactory.getExpositionDao(), DaoFactory.getPaymentDao());
     private static UserService userService = new UserService(
             DaoFactory.getUserDao(), DaoFactory.getPaymentDao(), new UpdatableBCrypt(11));
 
