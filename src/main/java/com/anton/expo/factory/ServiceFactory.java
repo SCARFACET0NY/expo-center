@@ -6,7 +6,7 @@ import com.anton.expo.utils.UpdatableBCrypt;
 public class ServiceFactory {
     private static EmailService emailService = new EmailService();
     private static ExpositionService expositionService = new ExpositionService(DaoFactory.getExpositionDao());
-    private static HallService hallService = new HallService();
+    private static HallService hallService = new HallService(DaoFactory.getHallDao());
     private static PaymentService paymentService = new PaymentService(
             DaoFactory.getExpositionDao(), DaoFactory.getPaymentDao());
     private static UserService userService = new UserService(
