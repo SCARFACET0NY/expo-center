@@ -1,9 +1,9 @@
 package com.anton.expo.commands.mail;
 
 import com.anton.expo.commands.Command;
-import com.anton.expo.factory.ServiceFactory;
 import com.anton.expo.repository.dto.TicketDto;
 import com.anton.expo.repository.entity.User;
+import com.anton.expo.services.EmailService;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,6 +19,12 @@ import java.util.Map;
 import java.util.Properties;
 
 public class SendMailCommand implements Command {
+    private final EmailService emailService;
+
+    public SendMailCommand(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
@@ -26,7 +32,7 @@ public class SendMailCommand implements Command {
         double total = (double) session.getAttribute("total");
         User user = (User) session.getAttribute("user");
 
-        Properties properties = ServiceFactory.getEmailService().loadProperties();
+        Properties properties = emailService.loadProperties();
         Session mailSession = Session.getDefaultInstance(properties);
         resp.setContentType("text/html");
 
@@ -36,7 +42,7 @@ public class SendMailCommand implements Command {
             message.setFrom(new InternetAddress(properties.getProperty("mail.smtp.host")));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
             message.setSubject("Tickets from Expo Center");
-            message.setContent(ServiceFactory.getEmailService().createEmailText(cart, total, user), "text/html");
+            message.setContent(emailService.createEmailText(cart, total, user), "text/html");
 
             Transport transport = mailSession.getTransport("smtp");
             transport.connect(properties.getProperty("mail.smtp.host"), properties.getProperty("mail.smtp.user"),

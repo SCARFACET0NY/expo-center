@@ -23,28 +23,50 @@ public class CommandFactory {
 
     static {
         commandMap = new HashMap<>();
-        commandMap.put("", new HomeCommand());
-        commandMap.put("addExposition", new AddExpositionCommand());
-        commandMap.put("admin", new AdminCommand());
-        commandMap.put("admin/add", new AddExpositionFormCommand());
-        commandMap.put("admin/update", new UpdateExpositionFormCommand());
-        commandMap.put("addTicket", new AddTicketCommand());
-        commandMap.put("cart", new CartCommand());
-        commandMap.put("chooseExposition", new ChooseExpositionCommand());
-        commandMap.put("largeHall", new LargeHallCommand());
-        commandMap.put("login", new LoginCommand());
-        commandMap.put("logout", new LogoutCommand());
-        commandMap.put("mediumHall", new MediumHallCommand());
-        commandMap.put("pay", new PayTicketsCommand());
-        commandMap.put("register", new RegisterCommand());
-        commandMap.put("removeTicket", new RemoveTicketCommand());
-        commandMap.put("purchaseHistory", new PurchaseHistoryCommand());
-        commandMap.put("search", new SearchCommand());
-        commandMap.put("sendMail", new SendMailCommand());
-        commandMap.put("setDate", new SetTicketDateCommand());
-        commandMap.put("setQuantity", new TicketQuantityCommand());
-        commandMap.put("smallHall", new SmallHallCommand());
-        commandMap.put("updateExposition", new UpdateExpositionCommand());
+        commandMap.put("",
+                new HomeCommand(ServiceFactory.getHallService()));
+        commandMap.put("addExposition",
+                new AddExpositionCommand(ServiceFactory.getExpositionService()));
+        commandMap.put("admin",
+                new AdminCommand());
+        commandMap.put("admin/add",
+                new AddExpositionFormCommand(ServiceFactory.getHallService()));
+        commandMap.put("admin/update",
+                new UpdateExpositionFormCommand(ServiceFactory.getExpositionService(), ServiceFactory.getHallService()));
+        commandMap.put("addTicket",
+                new AddTicketCommand(ServiceFactory.getPaymentService()));
+        commandMap.put("cart",
+                new CartCommand());
+        commandMap.put("chooseExposition",
+                new ChooseExpositionCommand(ServiceFactory.getExpositionService(), ServiceFactory.getHallService()));
+        commandMap.put("largeHall",
+                new LargeHallCommand(ServiceFactory.getExpositionService(), ServiceFactory.getHallService()));
+        commandMap.put("login",
+                new LoginCommand(ServiceFactory.getUserService()));
+        commandMap.put("logout",
+                new LogoutCommand());
+        commandMap.put("mediumHall",
+                new MediumHallCommand(ServiceFactory.getExpositionService(), ServiceFactory.getHallService()));
+        commandMap.put("pay",
+                new PayTicketsCommand(ServiceFactory.getPaymentService()));
+        commandMap.put("register",
+                new RegisterCommand(ServiceFactory.getUserService()));
+        commandMap.put("removeTicket",
+                new RemoveTicketCommand(ServiceFactory.getPaymentService()));
+        commandMap.put("purchaseHistory",
+                new PurchaseHistoryCommand(ServiceFactory.getUserService()));
+        commandMap.put("search",
+                new SearchCommand(ServiceFactory.getExpositionService()));
+        commandMap.put("sendMail",
+                new SendMailCommand(ServiceFactory.getEmailService()));
+        commandMap.put("setDate",
+                new SetTicketDateCommand());
+        commandMap.put("setQuantity",
+                new TicketQuantityCommand(ServiceFactory.getPaymentService()));
+        commandMap.put("smallHall",
+                new SmallHallCommand(ServiceFactory.getExpositionService(), ServiceFactory.getHallService()));
+        commandMap.put("updateExposition",
+                new UpdateExpositionCommand(ServiceFactory.getExpositionService()));
     }
 
     /**

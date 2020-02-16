@@ -1,17 +1,22 @@
 package com.anton.expo.commands.views;
 
 import com.anton.expo.commands.Command;
-import com.anton.expo.factory.DaoFactory;
-import com.anton.expo.factory.ServiceFactory;
+import com.anton.expo.services.HallService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class HomeCommand implements Command {
+    private final HallService hallService;
+
+    public HomeCommand(HallService hallService) {
+        this.hallService = hallService;
+    }
+
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        req.setAttribute("halls", ServiceFactory.getHallService().getAllHalls());
+        req.setAttribute("halls", hallService.getAllHalls());
         if (req.getSession().getAttribute("mailSuccess") != null) {
             req.setAttribute("mailSuccess", req.getSession().getAttribute("mailSuccess"));
             req.getSession().setAttribute("mailSuccess", null);

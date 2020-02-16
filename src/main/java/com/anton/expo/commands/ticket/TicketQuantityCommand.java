@@ -1,10 +1,9 @@
 package com.anton.expo.commands.ticket;
 
 import com.anton.expo.commands.Command;
-import com.anton.expo.factory.ServiceFactory;
 import com.anton.expo.repository.dto.TicketDto;
-import com.anton.expo.repository.entity.Exposition;
 import com.anton.expo.repository.entity.Ticket;
+import com.anton.expo.services.PaymentService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +12,12 @@ import java.io.IOException;
 import java.util.Map;
 
 public class TicketQuantityCommand implements Command {
+    private final PaymentService paymentService;
+
+    public TicketQuantityCommand(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
     @Override
     public String[] process(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
@@ -24,11 +29,11 @@ public class TicketQuantityCommand implements Command {
             Ticket ticket = cart.get(expositionId).getTicket();
             if (sign.equals("+")) {
                 ticket.setQuantity(ticket.getQuantity() + 1);
-                session.setAttribute("total", ServiceFactory.getPaymentService().getCartTotal(cart));
+                session.setAttribute("total", paymentService.getCartTotal(cart));
             } else if (sign.equals("-")) {
                 if (ticket.getQuantity() > 1) {
                     ticket.setQuantity(ticket.getQuantity() - 1);
-                    session.setAttribute("total", ServiceFactory.getPaymentService().getCartTotal(cart));
+                    session.setAttribute("total", paymentService.getCartTotal(cart));
                 }
             }
         }
