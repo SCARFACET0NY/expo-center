@@ -2,6 +2,7 @@ package com.anton.expo.services;
 
 import com.anton.expo.repository.dao.ExpositionDao;
 import com.anton.expo.repository.entity.Exposition;
+import com.anton.expo.services.impl.ExpositionServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,7 @@ class ExpositionServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        expositionService = new ExpositionService(expositionDao);
+        expositionService = new ExpositionServiceImpl(expositionDao);
     }
 
     @Test

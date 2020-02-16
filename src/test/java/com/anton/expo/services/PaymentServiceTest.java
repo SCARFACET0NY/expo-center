@@ -6,6 +6,7 @@ import com.anton.expo.repository.dto.TicketDto;
 import com.anton.expo.repository.entity.Exposition;
 import com.anton.expo.repository.entity.Payment;
 import com.anton.expo.repository.entity.Ticket;
+import com.anton.expo.services.impl.PaymentServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -59,7 +60,7 @@ class PaymentServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        paymentService = new PaymentService(expositionDao, paymentDao);
+        paymentService = new PaymentServiceImpl(expositionDao, paymentDao);
     }
 
     @Test
@@ -73,7 +74,7 @@ class PaymentServiceTest {
         assertNotNull(ticketDto);
         assertEquals(exposition, ticketDto.getExposition());
         assertEquals(exposition.getStartDate(), ticketDto.getTicket().getDate());
-        assertEquals(PaymentService.ONE_TICKET, ticketDto.getTicket().getQuantity());
+        assertEquals(paymentService.ONE_TICKET, ticketDto.getTicket().getQuantity());
 
         verify(expositionDao).get(anyLong());
     }

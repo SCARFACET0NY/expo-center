@@ -6,6 +6,7 @@ import com.anton.expo.repository.dao.UserDao;
 import com.anton.expo.repository.dto.Purchase;
 import com.anton.expo.repository.dto.TicketDto;
 import com.anton.expo.repository.entity.User;
+import com.anton.expo.services.impl.UserServiceImpl;
 import com.anton.expo.utils.UpdatableBCrypt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ class UserServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        userService = new UserService(userDao, paymentDao, updatableBCrypt);
+        userService = new UserServiceImpl(userDao, paymentDao, updatableBCrypt);
     }
 
     @Test

@@ -3,6 +3,7 @@ package com.anton.expo.services;
 import com.anton.expo.enums.HallType;
 import com.anton.expo.repository.dao.HallDao;
 import com.anton.expo.repository.entity.Hall;
+import com.anton.expo.services.impl.HallServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +26,7 @@ class HallServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        hallService = new HallService(hallDao);
+        hallService = new HallServiceImpl(hallDao);
     }
 
     @Test
