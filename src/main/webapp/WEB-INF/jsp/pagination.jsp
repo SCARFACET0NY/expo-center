@@ -21,7 +21,7 @@
         <li class="page-item ">
             <a class="page-link" <c:out value="${requestScope.page < requestScope.numOfPages ? 'href' : ''}" />
             ="${request.requestURL}?page=${requestScope.page + 1}">
-                <fmt:message bundle="${message}" key="expo.page.previous"/>
+                <fmt:message bundle="${message}" key="expo.page.next"/>
             </a>
         </li>
     </ul>
