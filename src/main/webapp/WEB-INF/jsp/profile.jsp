@@ -4,7 +4,7 @@
 <fmt:setBundle basename="application" var="message"/>
 
 <div class="container">
-    <h2>Admin</h2>
+    <h2><fmt:message bundle="${message}" key="expo.admin"/></h2>
     <table class="table table-striped table-dark">
         <tbody>
             <tr>
