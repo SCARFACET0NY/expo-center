@@ -1,18 +1,14 @@
 package com.anton.expo.commands.views.halls;
 
-import com.anton.expo.commands.views.PurchaseHistoryCommand;
 import com.anton.expo.enums.HallType;
 import com.anton.expo.repository.entity.Exposition;
 import com.anton.expo.repository.entity.Hall;
 import com.anton.expo.services.ExpositionService;
 import com.anton.expo.services.HallService;
-import com.anton.expo.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +23,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
 class LargeHallCommandTest {
     private static final String URI = "/largeHall";
     @Mock

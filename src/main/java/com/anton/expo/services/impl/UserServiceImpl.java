@@ -45,10 +45,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<Purchase> getPurchasesPageByUserId(long id, int pageNumber) {
-        List<Purchase> purchases = userDao.getUserPurchasesPaged(id, ROWS_PER_PAGE * pageNumber, ROWS_PER_PAGE);
-        purchases.forEach(purchase -> {
-            purchase.setTickets(paymentDao.getTicketsByPaymentId(purchase.getPaymentId()));
-        });
+        List<Purchase> purchases = null;
+        if (userDao.getNumberOfPurchasesByUserId(id) > 0) {
+            purchases = userDao.getUserPurchasesPaged(id, ROWS_PER_PAGE * pageNumber, ROWS_PER_PAGE);
+            purchases.forEach(purchase -> {
+                purchase.setTickets(paymentDao.getTicketsByPaymentId(purchase.getPaymentId()));
+            });
+        }
 
         return purchases;
     }
